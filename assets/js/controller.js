@@ -1,5 +1,5 @@
-angular.module('todoApp', [])
-	.controller('TodoListController', function() {
+angular.module('App', ['components'])
+	.controller('AppController', function() {
 		var app = this;
 
 		app.todos = [																				// Array of items for our Todo List
@@ -19,7 +19,7 @@ angular.module('todoApp', [])
 			return count;
 		};
 
-		app.clear = function() {													// Function to remove done items
+		app.clear = function() {														// Function to remove done items
 			var allTodos = app.todos;
 			app.todos = [];
 			angular.forEach(allTodos, function(todo) {
