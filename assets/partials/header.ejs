@@ -6,9 +6,18 @@
 		<meta name="description" content="">
 		<title>Node Site Template</title>
 		<link rel="stylesheet" type="text/css" href="css/style.css" />
+		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-MfvZlkHCEqatNoGiOXveE8FIwMzZg4W85qfrfIFBfYc= sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha256-Sk3nkD6mLTMOF0EOpNtsIry+s1CsaqQC1rVLTAy+0yc= sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
 		<script src="js/helloWorld.js"></script>
 		<script src="js/components.js"></script>
 		<script src="js/controller.js"></script>
 	</head>
-	<body>
+	
+	<body ng-controller="AppController as app">
+		<div class="title">
+			<h1>Node Site Template</h1>	
+			<p>With AngularJS integration</p>
+			<p>Hello, {{app.yourName}}</p>
+			<hr class="horizontal-line">
+		</div>

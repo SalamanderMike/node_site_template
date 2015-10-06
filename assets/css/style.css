@@ -1,12 +1,23 @@
 /*CSS File*/
 
 body {
-	background: white;
-
+	padding: 10px;
 }
 
-h1 {
-	color: black;
+.title {
+	text-align: center;
+}
+
+.horizontal-line {
+	width: 50%;
+}
+
+.panels {
+	width: 50%;
+}
+
+.content {
+	margin: 20px;
 }
 
 .done-true {

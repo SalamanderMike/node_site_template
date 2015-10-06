@@ -1,49 +1,52 @@
 <% include ../assets/partials/header.ejs %>
 
-
+<!-- ANGULAR EXAMPLE: DIRECTIVE WIRING -->
 <!-- ANGULAR EXAMPLE: BIND -->
-<h1>Node Site Template</h1>	
-<hr>
-<input type="text" ng-model="yourName" placeholder="Enter your name here!">
-<h1>Hello, {{yourName}}</h1>
-
-
-
-
+<!-- ANGULAR EXAMPLE: FILTERS -->
+<!-- ANGULAR EXAMPLE: UPDATING WITH $interval and $watch -->
 <!-- ANGULAR EXAMPLE: TODO LIST -->
-<h2>Angular Todo App</h2>
 
-<div ng-controller="AppController as app">
-	<span>{{app.remaining()}} of {{app.todos.length}} remaining</span>
-	[ <a href="" ng-click="app.clear()">CLEAR</a> ]
+<tabs class="panels">	<!-- THE tabs ELEMENT IS REPLACED BY ELEMENTS IN .directive "tabs" -->
 
-	<ul class="unstyled">
-		<li ng-repeat="todo in app.todos">
-			<input type="checkbox" ng-model="todo.done">
-			<span class="done-{{todo.done}}">{{todo.text}}</span>
-		</li>
-	</ul>
+	<pane title="BINDING" class="content">	<!-- THE pane ELEMENT IS REPLACED BY ELEMENTS IN .directive "pane" -->
+		<input type="text" ng-model="app.yourName" placeholder="Enter your name here!">
+	</pane>
 
-	<form ng-submit="app.addTodo()">
-		<input type="text" ng-model="app.todoText" size="30" placeholder="...add new task here">
-		<input type="submit" value="ADD">
-	</form>
-</div>
+	<pane title="FILTERS" class="content">
+		2015-10-05 is filtered to: {{ '2015-10-05' | date:'fullDate' }} with 'fullDate'<br>
+		123456 is filtered to: {{ 123456 | currency }}  with 'currency'<br>
+		98765.4321 is filtered to: {{ 98765.4321 | number }} with 'number'<br>
+	</pane>
 
+	<pane title="UPDATING" class="content">
+		EDIT DATE FORMAT: <input ng-model="format"> <br/>
+		CURRENT TIME IS: <span current-time="format"></span>
+	</pane>
 
-<!-- ANGULAR EXAMPLE: DIRECTIVE CONNECTION -->
-<tabs>
-	<pane title="TAB ONE">
+	<pane title="TASK LIST" class="content">
+		<div>
+			<span>{{app.remaining()}} of {{app.todos.length}} remaining</span>
+			[ <a href="" ng-click="app.clear()">CLEAR</a> ]
 
+			<ul class="unstyled">
+				<li ng-repeat="todo in app.todos">
+					<input type="checkbox" ng-model="todo.done">
+					<span class="done-{{todo.done}}">{{todo.text}}</span>
+				</li>
+			</ul>
 
-	</panel>
-
-
-	<pane title="TAB TWO">
-	
-	</panel>
+			<form ng-submit="app.addTodo()">
+				<input type="text" ng-model="app.todoText" size="30" placeholder="...add new task here">
+				<input type="submit" value="ADD TASK">
+			</form>
+		</div>
+	</pane>
 
 </tabs>
+
+
+
+
 
 
 

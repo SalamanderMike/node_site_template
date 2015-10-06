@@ -1,7 +1,10 @@
-angular.module('App', ['components'])
-	.controller('AppController', function() {
+angular.module('App', ['Components'])
+	.controller('AppController', function($scope) {
 		var app = this;
+		$scope.format = 'M/d/yyyy h:mm:ss a';								// DATE AND TIME FORMAT
 
+
+// SECTION: TODO
 		app.todos = [																				// Array of items for our Todo List
 			{text:'Item #1', done:true},
 			{text:'Item #2', done:false}];
