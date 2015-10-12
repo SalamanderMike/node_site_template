@@ -3,5 +3,9 @@ This app is designed to exemplify a simple structure for wiring up a node.js sit
 ##
 #Components used:
 * Express
+** npm install express --save
 * ejs
-* Angular.js
+** npm install ejs --save
+* OAuth
+** npm install oauthio --save
+** Installed with CDN

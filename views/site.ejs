@@ -45,7 +45,13 @@
 </tabs>
 
 
-
+<button ng-click="clickConnect('facebook')" class="btn">Facebook</button>
+<button ng-click="clickConnect('twitter')" class="btn">Twitter</button>
+<button ng-click="clickConnect('google')" class="btn">Google</button>
+<div ng-show="me">
+    <p>Successfully connected with {{provider}}</p>
+    <p>Hello {{me.name}}</p>
+</div>
 
 
 

@@ -1,4 +1,4 @@
-angular.module('App', ['Components'])
+angular.module('Controller', [])
 	.controller('AppController', function($scope) {
 		var app = this;
 		$scope.format = 'M/d/yyyy h:mm:ss a';								// DATE AND TIME FORMAT
@@ -31,5 +31,18 @@ angular.module('App', ['Components'])
 		};
 
 
+
+		// OAuth.initialize('YOUR_PUBLIC_KEY');
+
+		// $scope.clickConnect = function(provider) {
+		//   //Authorize your user to facebook
+		//   OAuth.popup(provider).done(function(result) {
+		//       //Get your user's personal data
+		//       result.me().done(function(me) {
+		//           $scope.me = me;
+		//           $scope.provider = provider;
+		//       });
+		//   });
+		// };
 
 	});

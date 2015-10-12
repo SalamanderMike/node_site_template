@@ -22,7 +22,7 @@ angular.module('Components', [])
 					panes.push(pane);
 				};
 			},
-			templateUrl: '../partials/tabs.html',											// FIND HTML TEMPLATE IN PARTIALS
+			templateUrl: '/partials/tabs.html',											// FIND HTML TEMPLATE IN PARTIALS
 			replace: true
 		};
 	})
@@ -36,7 +36,7 @@ angular.module('Components', [])
 			link: function(scope, element, attrs, tabsController) {		// PASSES IN THE controller from the "tabs" .directive
 				tabsController.addPane(scope);
 			},
-			templateUrl: '../partials/panes.html',
+			templateUrl: '/partials/panes.html',
 			replace: true
 		};
 	})
