@@ -1,5 +1,5 @@
 var express = require('express'),
-		router = express.Router();
+	router = express.Router();
 
 router.get('/', function (req,res) {
 	res.redirect('/site');
@@ -13,4 +13,4 @@ router.get('/site', function (req,res) {
 
 
 
-	module.exports = router;
+module.exports = router;
