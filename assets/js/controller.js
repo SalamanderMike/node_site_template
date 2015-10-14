@@ -30,7 +30,8 @@ angular.module('Controller', [])
 			});
 		};
 
-		console.log('CONTROLLER');
+// console.log(process.env.TEST);
+
 
 		// OAuth.initialize('YOUR_PUBLIC_KEY');
 

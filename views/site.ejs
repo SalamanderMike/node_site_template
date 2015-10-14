@@ -1,4 +1,4 @@
-<% include ../assets/partials/header.ejs %>
+<% include ./partials/header.ejs %>
 
 <!-- ANGULAR EXAMPLE: DIRECTIVE WIRING -->
 <!-- ANGULAR EXAMPLE: BIND -->
@@ -45,9 +45,7 @@
 </tabs>
 
 
-<button ng-click="clickConnect('facebook')" class="btn">Facebook</button>
-<button ng-click="clickConnect('twitter')" class="btn">Twitter</button>
-<button ng-click="clickConnect('google')" class="btn">Google</button>
+<button ng-click="clickConnect('Imgur')" class="btn">Imjur</button>
 <div ng-show="me">
     <p>Successfully connected with {{provider}}</p>
     <p>Hello {{me.name}}</p>
@@ -82,4 +80,4 @@
 
 
 
-<% include ../assets/partials/footer.ejs %>
+<% include ./partials/footer.ejs %>

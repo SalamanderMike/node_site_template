@@ -1,13 +1,15 @@
 var express = require('express'),
 	routes = require('./routes/routes'),
 	OAuth = require('oauthio'),
-	env = require('./env').secrets,							// ENVIRONMENTAL VARIABLES FILE
+	env = require('./env').secrets,										// ENVIRONMENTAL VARIABLES FILE
 	app = express();
 
+app.use('/partials', express.static(__dirname + '/views/partials'));	// PLACE PARTIALS IN /views
 app.use(express.static(__dirname + '/assets'));
 app.set("view engine", "ejs");
 app.use(routes);
 
+OAuth.initialize(env.development.OAUTHKEY, env.development.OAUTHSECRET);
 
 
 // NODEMON **************************************
@@ -22,8 +24,9 @@ exports.config = function() {
 	return env[node_env];
 };
 
-console.log(env.development.TEST);							// ENVIRONMENTAL VARIABLES TEST
-console.log(env.production.TEST);							// ENVIRONMENTAL VARIABLES TEST
+console.log(env.development.TEST);		// ENVIRONMENTAL VARIABLES TEST
+console.log(env.production.TEST);		// ENVIRONMENTAL VARIABLES TEST
+console.log(process.env.TEST);			// ENVIRONMENTAL VARIABLES TEST
 
 // EXPORT ***************************************
 module.exports = app;
