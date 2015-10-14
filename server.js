@@ -1,6 +1,6 @@
 var express = require('express'),
 	routes = require('./routes/routes'),
-	OAuth = require('oauthio'),
+	OAuth = require('oauth'),
 	env = require('./env').secrets,										// ENVIRONMENTAL VARIABLES FILE
 	app = express();
 
@@ -9,12 +9,11 @@ app.use(express.static(__dirname + '/assets'));
 app.set("view engine", "ejs");
 app.use(routes);
 
-OAuth.initialize(env.development.OAUTHKEY, env.development.OAUTHSECRET);
 
 
 // NODEMON **************************************
 app.listen(process.env.PORT || 3000, function(){
-	console.log("NODEMON IS LISTENING... localhost:3000");
+	console.log("NODEMON IS LISTENING IN THE NODE VAN... localhost:3000");
 });
 
 // ENVIRONMENTAL VARIABLES **********************

@@ -29,7 +29,7 @@
 
 
 
-var Router = angular.nodule('Router', ['ngRoute']).
+var Router = angular.module('Router', ['ngRoute']).
     config(['$routeProvider', '$locationProvider', function($routeProvider,$locationProvider) {
         $routeProvider.
         when('/', {
