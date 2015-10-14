@@ -9,6 +9,13 @@ router.get('/site', function (req,res) {
 	res.render('site');
 });
 
+// exports.routes = function(req, res){
+//   res.render('site');
+// };
+
+// router.get('/*', function (req, res) { 
+//     return res.sendFile(path.join(config.root, 'site.ejs')); 
+// });
 
 
 
