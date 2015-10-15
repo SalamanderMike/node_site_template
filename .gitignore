@@ -1,2 +1,2 @@
-env.js
+./assets/config/env
 node_modules

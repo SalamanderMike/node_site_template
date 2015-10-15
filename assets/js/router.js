@@ -3,7 +3,8 @@ var Router = angular.module('Router', ['ngRoute']).
         $routeProvider.
             when('/', {
                 templateUrl: 'site',
-                controller: 'AppController'
+                controller: 'AppController',
+                controllerAs: 'app'
             }).
             otherwise({
                 templateUrl: 'site'
