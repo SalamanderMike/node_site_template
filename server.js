@@ -1,6 +1,6 @@
 var express = require('express'),
 	routes = require('./routes/routes'),
-	config = require('./assets/config/env').config,								// ENVIRONMENTAL VARIABLES FILE
+	config = require('./assets/config/config').env,							// ENVIRONMENTAL VARIABLES FILE
 	OAuth = require('oauth'),
 	path = require('path'),
 	app = express();
