@@ -19,10 +19,12 @@
 		98765.4321 is filtered to: {{ 98765.4321 | number }} with 'number'<br>
 	</pane>
 
-	<pane title="UPDATING" class="content">
-		EDIT DATE FORMAT: <input ng-model="format"> <br/>
-		CURRENT TIME IS: <span current-time="format"></span>
-	</pane>
+	<section ng-controller="DateCtrl">
+		<pane title="UPDATING" class="content">
+			EDIT DATE FORMAT: <input ng-model="format"> <br/>
+			CURRENT TIME IS: <span current-time="format"></span>
+		</pane>
+	</section>
 
 	<pane title="TASK LIST" class="content">
 		<div>

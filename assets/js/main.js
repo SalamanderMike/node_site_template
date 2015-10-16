@@ -1,5 +1,5 @@
 angular.module("myApp", [
 	"Router",
-	"Controller",
+	"Controllers",
 	"Components"
 ]);
