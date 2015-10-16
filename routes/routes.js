@@ -1,11 +1,11 @@
 var express = require('express'),
 	router = express.Router();
 
-router.get('/test', function (req,res) {
-	res.render('test');
+router.get('/test', function (req,res) {		// ALLOWS ANGULAR ROUTER TO USE /test AS AN ADDRESS
+	res.render('site');
 });
 
-router.get('*', function (req,res) {
+router.get('*', function (req,res) {			// CAPTURES ALL ADDRESSES AND RENDERS THEM AS site.ejs
 	res.render('site');
 });
 

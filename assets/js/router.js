@@ -6,9 +6,9 @@ angular.module('Router', ['ngRoute'])
                 controller:     'AppController',
                 controllerAs:   'app'
             })
-            .when('/test', {
-                templateUrl:    'test',
-                controller:     'AppController',
+            .when('/test', {                            // CONTROLLER WITH LIMITED FUNCTIONALITY
+                templateUrl:    'site',
+                controller:     'DateCtrl',
                 controllerAs:   'app'
             })
             .otherwise({
