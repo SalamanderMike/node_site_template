@@ -1,0 +1,14 @@
+{
+  "app": {
+    "title": "Node Site Template",
+    "subTitle": "With AngularJS integration",
+    "name": "Hello"
+  },
+  "tab": {
+    "bind": "BINDING",
+    "filter": "FILTERS",
+    "update": "WATCH",
+    "task": "TASKS",
+    "language": "LANGUAGE"
+  }
+}

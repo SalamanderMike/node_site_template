@@ -44,14 +44,22 @@
 		</div>
 	</pane>
 
+	<pane title="LANGUAGE" class="content">	
+		<select ng-model="choice" 
+				ng-change="app.chooseLanguage(choice)" 
+				data-ng-options="choice for choice in languages">
+			<option value="" selected>- Make Selection -</option>
+		</select>
+	</pane>
+
 </tabs>
 
 
-<button ng-click="clickConnect('Imgur')" class="btn">Imjur</button>
+<!-- <button ng-click="clickConnect('Imgur')" class="btn">Imjur</button>
 <div ng-show="me">
     <p>Successfully connected with {{provider}}</p>
     <p>Hello {{me.name}}</p>
-</div>
+</div> -->
 
 
 

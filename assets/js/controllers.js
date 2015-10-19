@@ -6,6 +6,9 @@ angular.module('Controllers', [])
 
 		scp.format = 'M/d/yyyy h:mm:ss a';							// DATE AND TIME FORMAT
 
+		scp.languages = ['mandarin','english'];
+
+		scp.choice = "Default";
 
 // SECTION: TODO
 		app.todos = [												// Array of items for our Todo List
@@ -31,6 +34,19 @@ angular.module('Controllers', [])
 			angular.forEach(allTodos, function(todo) {
 				if (!todo.done) app.todos.push(todo);
 			});
+		};
+
+
+		app.chooseLanguage = function (lang) {
+
+			if (lang === "mandarin") {
+				console.log("MANDARIN!")
+			} else if (lang === "english") {
+				console.log("ENGLISH!");
+			} else {
+				console.log("Default")
+			}
+
 		};
 
 	}])
