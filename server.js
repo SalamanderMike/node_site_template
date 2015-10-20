@@ -1,21 +1,43 @@
-var express = require('express'),
-	routes = require('./routes/routes'),
-	config = require('./assets/resources/config').env,	// ENVIRONMENTAL VARIABLES FILE
-	i18n = require('i18next'),						
-	OAuth = require('oauth'),
+var config = require('./assets/resources/config').env,	// ENVIRONMENTAL VARIABLES FILE
+	express = require('express'),
+	bodyParser  = require('body-parser'),
+	i18n = require('i18next'),			
 	path = require('path'),
+	OAuth = require('oauth'),
 	app = express();
 
+
+
+
+// Middleware
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
+
+
 // Translations
-var option = { resGetPath: 'resources/locales/__lng__/__ns__.json' };
-i18n.init(option);
+var options = { debug: true,
+				preload: ['en_US'],
+				lng: "en_US",
+				ignoreRoutes: ['images/', 'public/', 'css/', 'js/'] 
+			};
+i18n.init(options);
 app.use(i18n.handle);
 
-// Setip
+
+// Setup
 app.use('/partials', express.static(path.join(__dirname + '/views/partials')));	// PLACE PARTIALS IN /views
 app.use(express.static(__dirname + '/assets'));
 app.set("view engine", "ejs");
-app.use(routes);
+
+
+
+
+
+
+
+// ROUTES
+require('./routes/routes')(app);
+
 
 
 

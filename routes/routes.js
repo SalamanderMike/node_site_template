@@ -1,13 +1,25 @@
-var express = require('express'),
-	router = express.Router();
+module.exports = function (app) {
 
-router.get('/test', function (req,res) {		// ALLOWS ANGULAR ROUTER TO USE /test AS AN ADDRESS
-	res.render('site');
-});
+	app.get('/test', function (req,res) {		// ALLOWS ANGULAR ROUTER TO USE /test AS AN ADDRESS
+		res.render('site', {
+			translate: {
+				words: req.i18n.t
+			}
+		});
+	});
 
-router.get('*', function (req,res) {			// CAPTURES ALL ADDRESSES AND RENDERS THEM AS site.ejs
-	res.render('site');
-});
+	app.get('*', function (req,res) {			// CAPTURES ALL ADDRESSES AND RENDERS THEM AS site.ejs
+		res.render('site', {
+			translate: {
+				words: req.i18n.t
+			}
+		});
+	});
+
+}
+
+
+
 
 // The following will download the file onto your computer instead of rendering it
 //
@@ -18,6 +30,3 @@ router.get('*', function (req,res) {			// CAPTURES ALL ADDRESSES AND RENDERS THE
 // router.get('/download', function (req, res) {		// WHEN NAVIGATING TO /download FILE WILL DOWNLOAD
 //     res.sendFile('site.ejs', root_path);
 // });
-
-module.exports = router;
-
