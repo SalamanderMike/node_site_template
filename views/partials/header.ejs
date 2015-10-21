@@ -1,38 +1,43 @@
-<!DOCTYPE html> 		<!-- PARTIALS  部分的 顶部-->
+<!DOCTYPE html>
 <html ng-app="myApp">
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="description" content="">
-	<title>Node Site Template</title>
+	<title ng-bind="title"></title>
 
 	<!-- BOOTSTRAP -->
-	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/style.css" />
 
 	<!-- ANGULARJS 角 -->
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-route.min.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-resource.min.js"></script>
+	<script src="bower_components/angular/angular.js"></script>
+	<script src="bower_components/angular-route/angular-route.js"></script>
+	<script src="bower_components/angular-resource/angular-resource.js"></script>
+	<script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
 
-	<!-- FIREBASE -->
-	<script src="https://cdn.firebase.com/js/client/2.2.4/firebase.js"></script>
-	<script src="https://cdn.firebase.com/libs/angularfire/1.1.3/angularfire.js"></script>
-
-	<!-- MY JS FILES 源文件 -->
+	<!-- ANGULAR WIRING 源文件 -->
 	<script src="js/main.js"></script>
 	<script src="js/router.js"></script>
 	<script src="js/controllers.js"></script>
 	<script src="js/components.js"></script>
+	<% include ./angular-translation-scripts.ejs %>
+
+
+	<!-- BOWER FILES 源文件 -->
+	<script src="bower_components/i18next/i18next.js"></script>
+	<script src="bower_components/i18ng/i18ng.js"></script>
 </head>
 
 <body ng-view>
 	<section class="title">
-		<h1>Node Site Template</h1>	
-		<p>With AngularJS integration</p>
-		<p><%=translate.words('app.subTitle')%></p>
-		<p>Hello, {{app.yourName}}</p>
+		<h1 ng-bind="headTitle"></h1>	
+		<p ng-bind="headSubtitle"></p>
+		<p ng-bind="headName">, {{app.yourName}}</p>
 		<hr class="horizontal-line">
+		<p ng-bind="changeLng"></p>
 	</section>
+
+	<h2>{{currentLng}}</h2>

@@ -8,7 +8,6 @@ var config = require('./assets/resources/config').env,	// ENVIRONMENTAL VARIABLE
 
 
 
-
 // Middleware
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
@@ -16,9 +15,10 @@ app.use(bodyParser.json());
 
 // Translations
 var options = { debug: true,
-				preload: ['en_US'],
-				lng: "en_US",
-				ignoreRoutes: ['images/', 'public/', 'css/', 'js/'] 
+				fallbackLng: 'en-US',
+				ignoreRoutes: ['assets/', 'node_modules/', 'routes/', 'views/'],
+				useCookie: false,
+				detectLngFromHeaders: false
 			};
 i18n.init(options);
 app.use(i18n.handle);
@@ -26,18 +26,19 @@ app.use(i18n.handle);
 
 // Setup
 app.use('/partials', express.static(path.join(__dirname + '/views/partials')));	// PLACE PARTIALS IN /views
+app.use('/locales', express.static(path.join(__dirname + '/locales')));	// PLACE PARTIALS IN /views
+app.use('/bower_components', express.static(path.join(__dirname + '/bower_components')));	// PLACE BOWER REQUIREMENTS
 app.use(express.static(__dirname + '/assets'));
 app.set("view engine", "ejs");
 
 
-
+// i18n.setLng('zh-CN', { fixLng: true }, function(zhCN){});
 
 
 
 
 // ROUTES
 require('./routes/routes')(app);
-
 
 
 

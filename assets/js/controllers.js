@@ -1,19 +1,49 @@
 angular.module('Controllers', [])
-	.controller('AppController', ['$scope', function (scp) {
+	.constant('HEADER', {
+        SUBTITLE: "<script> x=<%=translate('header.subTitle')%></script>"
+    })
+	.controller('AppController', ['$scope', 'i18ng', '$rootScope', 'HEADER', function ($scope, i18ng, $rootScope, HEADER) {
 		var app = this;
 		
-		scp.disable = false;										// ENABLE FUNCTIONALITY
+// TRANSLATION VARIABLES
+		$scope.headTitle = window.headTitle
+		$scope.headSubtitle = window.headSubtitle
+		$scope.headName = window.headName
 
-		scp.format = 'M/d/yyyy h:mm:ss a';							// DATE AND TIME FORMAT
+		$scope.tabBind = window.tabBind
+		$scope.tabFilter = window.tabFilter
+		$scope.tabUpdate = window.tabUpdate
+		$scope.tabTask = window.tabTask
+		$scope.tabLocale = window.tabLocale
 
-		scp.languages = ['mandarin','english'];
+		$scope.currentLng = window.i18n.lng();						//NOT WORKING YET
+		console.log(window.i18n.lng() + "Hello");
 
-		scp.choice = "Default";
+		$scope.changeLng = window.changeLng
+
+
+
+
+
+		$scope.disable = false;										// ENABLE FUNCTIONALITY
+
+		$scope.format = 'M/d/yyyy h:mm:ss a';						// DATE AND TIME FORMAT
+
+		$scope.languages = ['mandarin','english'];
+
+		$scope.choice = "Default";
+
+		$scope.greeting = 'header.name';
+
+		// $scope.x = HEADER.SUBTITLE;
+
 
 // SECTION: TODO
+
 		app.todos = [												// Array of items for our Todo List
 			{text:'Item #1', done:true},
-			{text:'Item #2', done:false}];
+			{text:'Item #2', done:false}
+		];
 
 		app.addTodo = function() {									// Function to add to our list
 			app.todos.push({text:app.todoText, done:false});
@@ -41,6 +71,7 @@ angular.module('Controllers', [])
 
 			if (lang === "mandarin") {
 				console.log("MANDARIN!")
+				i18n.setLng('zh-CN', { fixLng: true }, function(zhCN) { /* done */ });
 			} else if (lang === "english") {
 				console.log("ENGLISH!");
 			} else {
@@ -50,7 +81,9 @@ angular.module('Controllers', [])
 		};
 
 	}])
-	.controller('DateCtrl', ['$scope', function (scp) {
-		scp.disable = true;											// DISABLE TODO AND DATE EDIT FUNCTIONALITY
-		scp.format = 'M/d/yyyy h:mm:ss a';							// DATE AND TIME FORMAT
+	.controller('DateCtrl', ['$scope', 'i18ng', '$rootScope', function ($scope, i18ng, $rootScope) {
+		$scope.disable = true;											// DISABLE TODO AND DATE EDIT FUNCTIONALITY
+		$scope.format = 'M/d/yyyy h:mm:ss a';							// DATE AND TIME FORMAT
+		$scope.languages = ['mandarin','english'];
+
 	}]);

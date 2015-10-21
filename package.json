@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/SalamanderMike/node_site_template#readme",
   "dependencies": {
+    "bower": "^1.6.3",
     "body-parser": "^1.14.1",
     "ejs": "^2.3.4",
     "express": "^4.13.3",

@@ -1,8 +1,8 @@
 {
   "header": {
-    "title": "TITLE",
-    "subTitle": "SUBTITLE",
-    "name": "NAME"
+    "title": "NodeJS Site Template",
+    "subTitle": "With AngularJS integration",
+    "name": "Hello"
   },
   "tab": {
     "bind": "BINDING",

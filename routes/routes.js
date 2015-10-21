@@ -2,17 +2,13 @@ module.exports = function (app) {
 
 	app.get('/test', function (req,res) {		// ALLOWS ANGULAR ROUTER TO USE /test AS AN ADDRESS
 		res.render('site', {
-			translate: {
-				words: req.i18n.t
-			}
+			translate: req.i18n.t
 		});
 	});
 
 	app.get('*', function (req,res) {			// CAPTURES ALL ADDRESSES AND RENDERS THEM AS site.ejs
 		res.render('site', {
-			translate: {
-				words: req.i18n.t
-			}
+			translate: req.i18n.t
 		});
 	});
 
