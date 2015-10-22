@@ -1,19 +1,15 @@
 # Node Site Structure Template
-This app is designed to exemplify a simple structure for wiring up a node.js site with angular.js integration.
+This app is designed to exemplify angular.js integration onto a Node.js backend utilizing Angular routing, filters, directives, factories, and services.
 
-# 
+
 
 ### Components used:
-* Express  
+Back End:
 
-		npm install express --save
-	
+* Express  	
 * ejs  
-	
-		npm install ejs --save
-	
-* OAuth  
 
-		npm install oauthio --save
+Front End:
 
-* AngularJS, Bootstrap, and OAuth Installed with CDN
+* AngularJS
+* angular-translate

@@ -1,4 +1,4 @@
-angular.module('Router', ['ngRoute', 'i18ng', 'ngSanitize'])
+angular.module('Router', ['ngRoute', 'ngSanitize', 'pascalprecht.translate'])
     .config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
         $routeProvider
             .when('/', {
@@ -14,35 +14,21 @@ angular.module('Router', ['ngRoute', 'i18ng', 'ngSanitize'])
                 controllerAs:   'app'
             })
             .otherwise({
-                title:          '缺省',
-                templateUrl:    'site',
-                controller:     'AppController',
-                controllerAs:   'app'
+                redirectTo: "/"
             });
         $locationProvider.html5Mode({
             enabled: true,
             requireBase: false
         });
-
     }])
-    .config(['i18ngProvider', function(i18ngProvider) {
-
-        i18ngProvider.init({
-            debug: true,
-            fallbackLng: 'zh-CN',
-            ignoreRoutes: ['assets/', 'node_modules/', 'routes/', 'views/', 'bower_components/'],
-            useCookie: false,
-            detectLngFromHeaders: false,
-            resGetPath: '/locales/__lng__/__ns__.json'
-         })
-
-    }])
-    .config([
-        "$httpProvider", 
-        function($httpProvider) {
-            return $httpProvider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content');
-        }
-    ])
+    .config(function ($translateProvider) {
+        $translateProvider
+        .useStaticFilesLoader({
+            prefix: '/locales/',
+            suffix: '.json'
+        })
+        .preferredLanguage('enUS');
+    })
     .run(['$location', '$rootScope', function ($location, $rootScope) {                 // DYNAMICALLY CHANGE <head><title>
         $rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
 
@@ -51,4 +37,10 @@ angular.module('Router', ['ngRoute', 'i18ng', 'ngSanitize'])
                 $rootScope.title = current.$$route.title;
             }
         });
-    }]);
+    }])
+    .config([
+        "$httpProvider", 
+        function($httpProvider) {
+            return $httpProvider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content');
+        }
+    ]);

@@ -1,0 +1,26 @@
+{
+  "TITLE": "NodeJS Site Template",
+  "SUBTITLE": "With AngularJS integration",
+  "GREETING": "Hello",
+
+  "BIND": "BINDING",
+  "FILTER": "FILTERS",
+  "UPDATE": "WATCH",
+  "TASK": "TASKS",
+  "LOCALE": "LANGUAGE",
+
+  "enterName": "Enter your name here!",
+  "isFilteredTo": "is filtered to",
+  "using": "using",
+
+  "editDateFormat": "EDIT DATE FORMAT",
+  "currentTimeIs": "CURRENT TIME IS",
+
+  "of": "of",
+  "remaining": "remaining",
+  "remove": "remove",
+  "addNewTaskHere": "...add new task here",
+  "ADDTASK": "ADD TASK",
+  "chooseLanguage": "Choose the language for this website"
+}
+

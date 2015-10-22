@@ -23,21 +23,20 @@
 	<script src="js/router.js"></script>
 	<script src="js/controllers.js"></script>
 	<script src="js/components.js"></script>
-	<% include ./angular-translation-scripts.ejs %>
 
 
-	<!-- BOWER FILES 源文件 -->
-	<script src="bower_components/i18next/i18next.js"></script>
-	<script src="bower_components/i18ng/i18ng.js"></script>
+	<!-- TRANSLATION DEPENDENCIES  -->
+	<script src="bower_components/angular-translate/angular-translate.js"></script>
+	<script src="bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
+
 </head>
 
 <body ng-view>
-	<section class="title">
-		<h1 ng-bind="headTitle"></h1>	
-		<p ng-bind="headSubtitle"></p>
-		<p ng-bind="headName">, {{app.yourName}}</p>
+	<section class="'title'">
+		<h1 translate>{{ 'TITLE' }}</h1>	
+		<p translate>{{'SUBTITLE'}}</p>
+		<span>
+			<p><span translate>{{'GREETING'}}</span>, {{app.yourName}}</p>
+		</span>
 		<hr class="horizontal-line">
-		<p ng-bind="changeLng"></p>
 	</section>
-
-	<h2>{{currentLng}}</h2>

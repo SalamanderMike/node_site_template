@@ -1,0 +1,11 @@
+{
+  "TITLE": "TITLE",
+  "SUBTITLE": "SUBTITLE",
+  "GREETING": "NAME",
+
+  "BIND": "BINDING",
+  "FILTER": "FILTERS",
+  "UPDATE": "WATCH",
+  "TASK": "TASKS",
+  "LOCALE": "LANGUAGE"
+}

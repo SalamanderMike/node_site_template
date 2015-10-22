@@ -4,6 +4,14 @@ body {
 	padding: 10px;
 }
 
+body section {
+	text-align: center;
+}
+
+.tab-pane {
+	width: 500px;
+}
+
 .title {
 	text-align: center;
 }

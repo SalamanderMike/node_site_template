@@ -9,26 +9,26 @@
 
 <tabs class="panels">	<!-- THE tabs ELEMENT IS REPLACED BY ELEMENTS IN .directive "tabs" -->
 
-	<pane title="{{tabBind}}" class="content">	<!-- THE pane ELEMENT IS REPLACED BY ELEMENTS IN .directive "pane" -->
-		<input type="text" ng-model="app.yourName" placeholder="Enter your name here!">
+	<pane title="{{ 'BIND' | translate }}" class="content">	<!-- THE pane ELEMENT IS REPLACED BY ELEMENTS IN .directive "pane" -->
+		<input type="text" ng-model="app.yourName" placeholder="{{ 'enterName' | translate }}">
 	</pane>
 
-	<pane title="{{tabFilter}}" class="content">
-		2015-10-05 is filtered to: {{ '2015-10-05' | date:'fullDate' }} with 'fullDate'<br>
-		123456 is filtered to: {{ 123456 | currency }}  with 'currency'<br>
-		98765.4321 is filtered to: {{ 98765.4321 | number }} with 'number'<br>
+	<pane title="{{ 'FILTER' | translate }}" class="content">
+		2015-10-05 {{'isFilteredTo' | translate}}: {{ '2015-10-05' | date:'fullDate' }} {{'using' | translate}} 'fullDate' filter<br>
+		123456 {{'isFilteredTo' | translate}}: {{ 123456 | currency }}  {{'using' | translate}} 'currency' filter<br>
+		98765.4321 {{'isFilteredTo' | translate}}: {{ 98765.4321 | number }} {{'using' | translate}} 'number' filter<br>
 	</pane>
 
-	<pane title="{{tabUpdate}}" class="content">
-		EDIT DATE FORMAT: <input ng-hide="disable" ng-model="format"><span ng-show="disable">Editing temporarily disabled</span> <br/>
-		CURRENT TIME IS: <span current-time="format"></span>
+	<pane title="{{ 'UPDATE' | translate }}" class="content">
+		{{'editDateFormat' | translate}}: <input ng-hide="disable" ng-model="format"><span ng-show="disable">Editing temporarily disabled</span> <br/>
+		{{'currentTimeIs' | translate}}: <span current-time="format"></span>
 	</pane>
 
-	<pane title="{{tabTask}}" class="content">
+	<pane title="{{ 'TASK' | translate }}" class="content">
 		<h2 ng-show="disable">Tasks Disabled</h2>
 		<div ng-hide="disable">
-			<span>{{app.remaining()}} of {{app.todos.length}} remaining</span>
-			[ <a href="" ng-click="app.clear()">CLEAR</a> ]
+			<span>{{app.remaining()}} {{'of' | translate}} {{app.todos.length}} {{'remaining' | translate}}</span>
+			[ <a href="" ng-click="app.clear()">{{'remove' | translate}}</a> ]
 
 			<ul class="unstyled">
 				<li ng-repeat="todo in app.todos">
@@ -38,13 +38,14 @@
 			</ul>
 
 			<form ng-submit="app.addTodo()">
-				<input type="text" ng-model="app.todoText" size="30" placeholder="...add new task here">
-				<input type="submit" value="ADD TASK">
+				<input type="text" ng-model="app.todoText" size="30" placeholder="{{'addNewTaskHere' | translate}}">
+				<input type="submit" value="{{'ADDTASK' | translate}}">
 			</form>
 		</div>
 	</pane>
 
-	<pane title="{{tabLocale}}" class="content">	
+	<pane title="{{ 'LOCALE' | translate }}" class="content">
+	{{'chooseLanguage' | translate}}:  
 		<select ng-model="choice" 
 				ng-change="app.chooseLanguage(choice)" 
 				data-ng-options="choice for choice in languages">

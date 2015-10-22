@@ -21,7 +21,7 @@
     "angular-route": "~1.4.7",
     "angular-resource": "~1.4.7",
     "angular-sanitize": "~1.4.7",
-    "i18next": "~1.10.3",
-    "i18ng": "~0.2.0"
+    "angular-translate": "~2.8.1",
+    "angular-translate-loader-static-files": "~2.8.1"
   }
 }

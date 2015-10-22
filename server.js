@@ -13,26 +13,14 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
 
-// Translations
-var options = { debug: true,
-				fallbackLng: 'en-US',
-				ignoreRoutes: ['assets/', 'node_modules/', 'routes/', 'views/'],
-				useCookie: false,
-				detectLngFromHeaders: false
-			};
-i18n.init(options);
-app.use(i18n.handle);
-
 
 // Setup
-app.use('/partials', express.static(path.join(__dirname + '/views/partials')));	// PLACE PARTIALS IN /views
-app.use('/locales', express.static(path.join(__dirname + '/locales')));	// PLACE PARTIALS IN /views
+app.use('/partials', express.static(path.join(__dirname + '/views/partials')));				// PLACE PARTIALS IN /views
+app.use('/locales', express.static(path.join(__dirname + '/locales')));						// PLACE PARTIALS IN /views
 app.use('/bower_components', express.static(path.join(__dirname + '/bower_components')));	// PLACE BOWER REQUIREMENTS
 app.use(express.static(__dirname + '/assets'));
 app.set("view engine", "ejs");
 
-
-// i18n.setLng('zh-CN', { fixLng: true }, function(zhCN){});
 
 
 
