@@ -1,7 +1,6 @@
 var config = require('./assets/resources/config').env,	// ENVIRONMENTAL VARIABLES FILE
 	express = require('express'),
 	bodyParser  = require('body-parser'),
-	i18n = require('i18next'),			
 	path = require('path'),
 	OAuth = require('oauth'),
 	app = express();
