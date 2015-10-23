@@ -27,7 +27,11 @@ angular.module('Router', ['ngRoute', 'ngSanitize', 'pascalprecht.translate'])
             prefix: '/locales/',
             suffix: '.json'
         })
-        .preferredLanguage('enUS');
+        .registerAvailableLanguageKeys(['enUS', 'zhCN'])
+        .preferredLanguage('enUS')
+        .fallbackLanguage('enUS')
+        .determinePreferredLanguage()
+        .useSanitizeValueStrategy('escapeParameters');
     })
     .run(['$location', '$rootScope', function ($location, $rootScope) {                 // DYNAMICALLY CHANGE <head><title>
         $rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
