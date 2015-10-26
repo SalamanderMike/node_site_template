@@ -1,6 +1,6 @@
 <div class="tabbable"> 		<!-- TAB 部分-->
   <ul class="nav nav-tabs"> 												<!-- USING BOOTSTRAP TAB STRUCTURE -->
-    <li ng-repeat="pane in panes" ng-class="{active:pane.selected}">		<!-- SELECTABLE TABS -->
+    <li ng-repeat="pane in panes track by $index" ng-class="{active:pane.selected}">		<!-- SELECTABLE TABS -->
       <a href="" ng-click="select(pane)">{{pane.title}}</a> 				<!-- TITLE OF TABS -->
     </li> 
   </ul> 

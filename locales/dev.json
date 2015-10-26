@@ -1,11 +1,25 @@
 {
-  "TITLE": "TITLE",
-  "SUBTITLE": "SUBTITLE",
-  "GREETING": "NAME",
+  "TITLE":	 		"TITLE",
+  "SUBTITLE":		"SUBTITLE",
+  "GREETING":		"NAME",
 
-  "BIND": "BINDING",
-  "FILTER": "FILTERS",
-  "UPDATE": "WATCH",
-  "TASK": "TASKS",
-  "LOCALE": "LANGUAGE"
+  "BIND":			"BINDING",
+  "FILTER":			"FILTERS",
+  "UPDATE":			"WATCH",
+  "TASK":			"TASKS",
+  "LOCALE":			"LANGUAGE",
+
+  "enterName":      "TRANSLATION",
+  "isFilteredTo":   "TRANSLATION",
+  "using":          "TRANSLATION",
+
+  "editDateFormat": "TRANSLATION",
+  "currentTimeIs":  "TRANSLATION",
+
+  "of": 			"TRANSLATION",
+  "remaining":      "TRANSLATION",
+  "remove":         "TRANSLATION",
+  "addNewTaskHere": "TRANSLATION",
+  "ADDTASK":        "TRANSLATION",
+  "chooseLanguage": "TRANSLATION"
 }

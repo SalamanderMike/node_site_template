@@ -10,7 +10,7 @@
 <tabs class="panels">	<!-- THE tabs ELEMENT IS REPLACED BY ELEMENTS IN .directive "tabs" -->
 
 	<pane title="{{ 'BIND' | translate }}" class="content">	<!-- THE pane ELEMENT IS REPLACED BY ELEMENTS IN .directive "pane" -->
-		<input type="text" ng-model="app.yourName" placeholder="{{ 'enterName' | translate }}">
+		<input type="text" ng-model="app.yourName" placeholder="{{ 'enterName' | translate }}" auto-focus>
 	</pane>
 
 	<pane title="{{ 'FILTER' | translate }}" class="content">
@@ -38,8 +38,8 @@
 			</ul>
 
 			<form ng-submit="app.addTodo()">
-				<input type="text" ng-model="app.todoText" size="30" placeholder="{{'addNewTaskHere' | translate}}">
-				<input type="submit" value="{{'ADDTASK' | translate}}">
+				<input type="text" ng-model="app.todoText" size="30" placeholder="{{'addNewTaskHere' | translate}}" focus-bool="focusFocus">
+				<input type="submit" value="{{'ADDTASK' | translate}}" ng-click="focusFocus=true">
 			</form>
 		</div>
 	</pane>
