@@ -12,6 +12,8 @@
 
 body section {
 	text-align: center;
+	font-family: 'Josefin Sans', sans-serif;
+	font-size: 1.5em;
 	color: #fff6b7;
 }
 
@@ -50,7 +52,9 @@ a.red {
 /*TABS AND PANELS (GENERAL)***************************************************/
 .nav.nav-tabs {
 	margin: auto;
-	width: 65%;
+	width: 70%;
+	font-family: 'Josefin Sans', sans-serif;
+	font-size: 1.2em;
 }
 
 .nav-tabs{										/*NON-SELECTED TAB*/
@@ -86,7 +90,7 @@ a.red {
 }
 
 .tab-pane {
-	width: 500px;
+	width: 90%;
 }
 
 .panels {
@@ -97,10 +101,129 @@ a.red {
 .content {
 	margin: 20px;
 	color: #dbdbdb;
+	font-family: 'Muli', sans-serif;
+	font-size: 1.2em;
 }
 
-/*TABS AND PANELS (ELEMENT SPECIFIC)***************************************************/
+/*TABS AND PANELS (ELEMENT SPECIFIC)*******************************************/
 .done-true {
 	text-decoration: line-through;
 	color: grey;
 }
+
+
+/*RESPONSIVE DESIGN **********************************************************/
+/*test Medium size*/
+@media (max-width: 1024px) {
+	#contact-strip {
+		text-align: center;
+	}
+
+	.navbar-default {
+		background: blue;
+	}
+
+	#news-reviews {
+	  right: 14%;
+	}
+
+	#products {
+	  right: 37.7%;
+	}
+
+	#services {
+	  right: 50%;
+	}
+
+	#home {
+	  right: 62%;
+	}
+}
+
+/*test Small size*/
+@media (max-width: 788px) {
+	.navbar-default {
+		background: green;
+		height: 30px;
+		}
+
+	#side-menu {
+	  visibility: visible;
+	}
+
+}
+
+
+/*iPad size*/
+/* Portrait */
+	@media only screen
+	  and (min-device-width: 768px)
+	  and (max-device-width: 1024px)
+	  and (orientation: portrait)
+	  and (-webkit-min-device-pixel-ratio: 1) {
+
+	}
+
+	/* Landscape */
+	@media only screen
+	  and (min-device-width: 768px)
+	  and (max-device-width: 1024px)
+	  and (orientation: landscape)
+	  and (-webkit-min-device-pixel-ratio: 1) {
+
+	}
+
+	/*iPhone size*/
+	/* 6 & 6s Portrait and Landscape */
+	@media only screen
+	  and (min-device-width: 375px)
+	  and (max-device-width: 667px)
+	  and (-webkit-min-device-pixel-ratio: 2) {
+
+	}
+
+	/* 6+ Landscape */
+	@media only screen
+	  and (min-device-width: 414px)
+	  and (max-device-width: 736px)
+	  and (-webkit-min-device-pixel-ratio: 3)
+	  and (orientation: landscape) {
+
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

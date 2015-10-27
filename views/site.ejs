@@ -46,7 +46,7 @@
 	</pane>
 
 	<pane title="{{ 'LOCALE' | translate }}" class="content">
-	{{'chooseLanguage' | translate}}:  
+	{{'chooseLanguage' | translate}}:
 		<select ng-model="choice" 
 				ng-change="app.chooseLanguage(choice)" 
 				data-ng-options="choice for choice in languages">
