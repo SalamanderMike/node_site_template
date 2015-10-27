@@ -7,6 +7,7 @@ angular.module('Controllers', [])
 		$scope.languages = ['中国（简体)','English'];
 		$scope.disable = false;										// ENABLE FUNCTIONALITY
 		$scope.focusFocus = false;
+		$scope.red = "red";
 
 // SECTION: TODO
 		app.todos = [												// Array of items for our Todo List
@@ -18,7 +19,6 @@ angular.module('Controllers', [])
 			app.todos.push({text:app.todoText, done:false});
 			app.todoText = '';
 			$scope.focusFocus = false;
-			console.log($scope.focusFocus);
 		};
 
 		app.remaining = function() {								// Function to find number of unchecked items
@@ -35,7 +35,6 @@ angular.module('Controllers', [])
 			angular.forEach(allTodos, function(todo) {
 				if (!todo.done) app.todos.push(todo);
 			});
-			resetFocus();
 		};
 
 // SECTION: TRANSLATION
