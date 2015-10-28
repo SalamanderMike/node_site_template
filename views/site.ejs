@@ -14,28 +14,28 @@
 	</pane>
 
 	<pane title="{{ 'FILTER' | translate }}" class="content">
-		2015-10-05 {{'isFilteredTo' | translate}}: {{ '2015-10-05' | date:'fullDate' }} {{'using' | translate}} 'fullDate' filter<br>
-		123456 {{'isFilteredTo' | translate}}: {{ 123456 | currency }}  {{'using' | translate}} 'currency' filter<br>
-		98765.4321 {{'isFilteredTo' | translate}}: {{ 98765.4321 | number }} {{'using' | translate}} 'number' filter<br>
+		2015-10-05 | fullDate<br>{{'isFilteredTo' | translate}}: {{ '2015-10-05' | date:'fullDate' }}<br>
+		123456 | currency<br>{{'isFilteredTo' | translate}}: {{ 123456 | currency }}<br>
+		98765.4321 | number<br>{{'isFilteredTo' | translate}}: {{ 98765.4321 | number }}<br>
 	</pane>
 
 	<pane title="{{ 'UPDATE' | translate }}" class="content">
 		{{'editDateFormat' | translate}}: <input ng-hide="disable" ng-model="format"><span ng-show="disable">Editing temporarily disabled</span> <br/>
-		{{'currentTimeIs' | translate}}: <span current-time="format"></span>
+		{{'currentTimeIs' | translate}}:<br> <span current-time="format"></span>
 	</pane>
 
 	<pane title="{{ 'TASK' | translate }}" class="content">
 		<h2 ng-show="disable">Tasks Disabled</h2>
-		<div ng-hide="disable">
+		<div class="tasks" ng-hide="disable">
 			<span>{{app.remaining()}} {{'of' | translate}} {{app.todos.length}} {{'remaining' | translate}}</span>
 			[ <a href="" class="red" ng-click="app.clear()">{{'remove done items' | translate}}</a> ]
 
 			<ul class="unstyled">
-				<li ng-repeat="todo in app.todos">
+				<div ng-repeat="todo in app.todos">
 					<label class="done-{{todo.done}}">
 						<input type="checkbox" ng-model="todo.done">
 					{{todo.text}}</label>
-				</li>
+				</div>
 			</ul>
 
 			<form ng-submit="app.addTodo()">
