@@ -2,6 +2,42 @@
 // BUILT IN (HIDDEN) DIRECTIVES INCLUDE: ngModel, ngBind,& ngClass
 
 angular.module('Components', [])
+.directive('responsive', function ($window) {									// APPLY TEMPLATE AT BREAKPOINTS FOR RESPONSIVE DESIGN
+	return {																	// MAY USE THIS FOR EXTENSIVE SMALL VIEWPORT CHANGES
+		replace: true,
+		template: '<div ng-include="template"></div>',
+		scope: {},
+
+		link: function postLink(scope, element, attrs) {
+			function checkBreaks() {
+				var curBreak = $window.innerWidth,
+					template = attrs.responsive,
+					smBreak = parseInt(attrs.smbreak),
+					mdBreak = parseInt(attrs.mdbreak);	
+
+				if (smBreak && curBreak < smBreak) {
+					curBreak = smBreak;
+					template = attrs.smtemplate;
+				} else if (mdBreak && curBreak < mdBreak) {	
+					curBreak = mdBreak;
+					template = attrs.mdtemplate
+				}
+				
+					if (curBreak != scope.break) {									// FEED BACK TO SCOPE
+						scope.break = curBreak;
+						scope.template = template;
+					}
+				};
+
+				checkBreaks(element[0].clientWidth);								// CHECK WINDOW SIZE
+
+				$window.onresize = function() {										// WHEN RESIZING WINDOW,
+					scope.$apply(function (){checkBreaks(element[0].clientWidth)});	// $apply TO SEND TO ANGULAR
+				};
+			}
+	};
+})
+
 .directive('tabs', function() {
 	return {
 		restrict: 'E',															// MATCH BY ELEMENT
