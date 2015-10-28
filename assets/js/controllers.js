@@ -37,6 +37,34 @@ angular.module('Controllers', [])
 			});
 		};
 
+// SLIDING SIDE MENU
+		$scope.leftVisible = false;
+		$scope.rightVisible = false;
+
+		app.close = function() {
+			$scope.leftVisible = false;
+			$scope.rightVisible = false;
+		};
+
+		app.showLeft = function(e) {
+			$scope.leftVisible = true;
+			e.stopPropagation();
+		};
+
+		app.showRight = function(e) {
+			$scope.rightVisible = true;
+			e.stopPropagation();
+		}
+
+		$rootScope.$on("documentClicked", _close);
+		$rootScope.$on("escapePressed", _close);
+
+		function _close() {
+			$scope.$apply(function() {
+				app.close(); 
+			});
+		}
+
 // SECTION: TRANSLATION
 		app.chooseLanguage = function (lang) {
 

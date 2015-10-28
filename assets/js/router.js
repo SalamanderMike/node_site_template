@@ -42,8 +42,18 @@ angular.module('Router', ['ngRoute', 'ngSanitize', 'pascalprecht.translate'])
             }
         });
     }])
+    .run(function ($rootScope) {                                                        // SLIDING SIDE MENU
+        document.addEventListener('keyup', function(e) {
+            if (e.keyCode === 27)
+                $rootScope.$broadcast('escapePressed', e.target);
+            });
+
+        document.addEventListener('click', function(e) {
+            $rootScope.$broadcast('documentClicked', e.target);
+        });
+    })
     .config([
-        "$httpProvider", 
+        '$httpProvider', 
         function($httpProvider) {
             return $httpProvider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content');
         }

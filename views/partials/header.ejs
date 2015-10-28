@@ -8,6 +8,7 @@
 
 	<!-- FONTS -->
 	<link 	href="https://fonts.googleapis.com/css?family=Josefin+Sans:100|Muli:300" rel="stylesheet" type="text/css">
+	<link 	rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
 
 	<!-- ANGULARJS 角 -->
 	<script src="bower_components/angular/angular.js"></script>
@@ -41,6 +42,16 @@
      mdbreak=1024
      mdtemplate="partials/medium.html">
 </section>
+
+<h1 id="menu-activate" ng-click="app.showLeft($event)">=</h1>
+<menu visible="leftVisible" alignment="left">
+	<menu-item hash="first-page">BINDING</menu-item>
+	<menu-item hash="second-page">FILTERS</menu-item>
+	<menu-item hash="third-page">WATCH</menu-item>
+	<menu-item hash="fourth-page">TASKS</menu-item>
+	<menu-item hash="fifth-page">LANGUAGE</menu-item>
+</menu>
+
 	<section class="'title'">
 		<h1 translate="TITLE"></h1>	
 		<p translate="SUBTITLE"></p>
@@ -49,4 +60,5 @@
 		</span>
 		<hr class="horizontal-line">
 	</section>
+
 

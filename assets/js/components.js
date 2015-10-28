@@ -38,7 +38,34 @@ angular.module('Components', [])
 	};
 })
 
-.directive('tabs', function() {
+.directive("menu", function() {													// SLIDING SIDE MENU DIRECTIVES
+	return {
+		restrict: "E",
+		template: "<div ng-class='{ show: visible, left: alignment === \"left\", right: alignment === \"right\" }' ng-transclude></div>",
+		transclude: true,
+		scope: {
+			visible: "=",
+			alignment: "@"
+		}
+	};
+})
+.directive("menuItem", function() {
+	return {
+		restrict: "E",
+		template: "<div ng-click='navigate()' ng-transclude></div>",
+		transclude: true,
+		scope: {
+			hash: "@"
+		},
+		link: function($scope) {
+			$scope.navigate = function() {
+				window.location.hash = $scope.hash;
+			}
+		}
+	};
+})
+
+.directive('tabs', function() {													// TABS & PANELS DIRECTIVES
 	return {
 		restrict: 'E',															// MATCH BY ELEMENT
 		transclude: true,														// LOOKS FOR SCOPE OUTSIDE OF THE DIRECTIVE (instead of inside)
@@ -62,7 +89,6 @@ angular.module('Components', [])
 		replace: true
 	};
 })
-
 .directive('pane', function() {
 	return {
 		require: '^tabs',														// CONNECTS THIS .directive TO THE "tabs" .directive
@@ -77,7 +103,8 @@ angular.module('Components', [])
 	};
 })
 
-.directive('currentTime', ['$interval','dateFilter', function($interval, dateFilter) {
+
+.directive('currentTime', ['$interval','dateFilter', function($interval, dateFilter) {	// TIME & DATE DIRECTIVE
 	function link(scope, element, attrs) {
 		var format,
 			tickTock;
@@ -105,6 +132,7 @@ angular.module('Components', [])
 	};
 }])
 
+
 .directive('autoFocus', function ($timeout) {							// AUTOFOCUS INPUT FIELD ON PAGE LOAD
     return {
         link: {
@@ -116,7 +144,6 @@ angular.module('Components', [])
         }
     }
 })
-
 .directive('focusBool', function ($timeout) { 							// INPUT FIELD FOCUS ON CLICK
     return function (scope, element, attrs) {
         scope.$watch(attrs.focusBool, function (value) {
