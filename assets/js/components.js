@@ -38,73 +38,83 @@ angular.module('Components', [])
 	};
 })
 
-.directive("menu", function() {													// SLIDING SIDE MENU DIRECTIVES
-	return {
-		restrict: "E",
-		template: "<div ng-class='{ show: visible, left: alignment === \"left\", right: alignment === \"right\" }' ng-transclude></div>",
-		transclude: true,
-		scope: {
-			visible: "=",
-			alignment: "@"
-		}
-	};
-})
-.directive("menuItem", function() {
-	return {
-		restrict: "E",
-		template: "<div ng-click='navigate()' ng-transclude></div>",
-		transclude: true,
-		scope: {
-			hash: "@"
-		},
-		link: function($scope) {
-			$scope.navigate = function() {
-				window.location.hash = $scope.hash;
-			}
-		}
-	};
-})
-
 .directive('tabs', function() {													// TABS & PANELS DIRECTIVES
 	return {
 		restrict: 'E',															// MATCH BY ELEMENT
 		transclude: true,														// LOOKS FOR SCOPE OUTSIDE OF THE DIRECTIVE (instead of inside)
 		scope: {},
-		controller: function($scope, $element) {
-			var panes = $scope.panes = [];
+		controller: function($scope) {
+			var pages = $scope.pages = [];
 
-			$scope.select = function(pane) {
-				angular.forEach(panes, function(pane) {
-					pane.selected = false;
+			$scope.select = function(page) {
+				console.log(page);
+				angular.forEach(pages, function (page) {
+					page.selected = false;
 				});
-				pane.selected = true;
+				page.selected = true;
 			};
 
-			this.addPane = function(pane) {
-				if (panes.length === 0) $scope.select(pane);
-				panes.push(pane);
+			this.addPage = function(page) {
+				if (pages.length === 0) $scope.select(page);
+				pages.push(page);
 			};
 		},
 		templateUrl: '/partials/tabs.html',										// FIND HTML TEMPLATE IN PARTIALS
 		replace: true
 	};
 })
-.directive('pane', function() {
+.directive('page', function() {
 	return {
 		require: '^tabs',														// CONNECTS THIS .directive TO THE "tabs" .directive
 		restrict: 'E',
 		transclude: true,
 		scope: { title: '@' },													// COPIES THE VALUE OF THE 'title="...' from the DOM
 		link: function(scope, element, attrs, tabsController) {					// PASSES IN THE controller from the "tabs" .directive
-			tabsController.addPane(scope);
+			tabsController.addPage(scope);
 		},
-		templateUrl: '/partials/panes.html',
+		template: "<div class='tab-pane' ng-class='{active: selected}' ng-transclude></div>",
 		replace: true
 	};
 })
 
+.directive('drawer', function() {													// SLIDING SIDE MENU DIRECTIVES
+	return {
+		restrict: 'E',
+		transclude: true,
+		scope: {
+			visible: '=',
+			alignment: '@'
+		},
+		template: "<div ng-class='{ show: visible, left: alignment === \"left\", right: alignment === \"right\" }' ng-transclude></div>"
+	};
+}) 
+.directive('item', function() {
+	return {
+		restrict: 'E',
+		transclude: true,
+		scope: { title: '@' },
+		link: function($scope, element, attrs, tabsController) {
+			var pages = $scope.pages = [''];
+			$scope.navigate = function() {
+				console.log(window.location.title);
+				window.location.title = $scope.title;
+				console.log($scope.title);
+			};
+			$scope.select = function(page) {
+				console.log(page);
+				angular.forEach(pages, function (page) {
+					page.selected = false;
+				});
+				page.selected = true;
+			};
 
-.directive('currentTime', ['$interval','dateFilter', function($interval, dateFilter) {	// TIME & DATE DIRECTIVE
+		},
+
+		template: "<div ng-repeat='page in pages' ng-click='select(page)' ng-transclude>{{ page.title }}</div>"
+	};
+})
+
+.directive('currentTime', ['$interval','dateFilter', function ($interval, dateFilter) {	// TIME & DATE DIRECTIVE
 	function link(scope, element, attrs) {
 		var format,
 			tickTock;
@@ -113,7 +123,7 @@ angular.module('Components', [])
 			element.text(dateFilter(new Date(), format));
 		}
 
-		scope.$watch(attrs.currentTime, function(value) {				// WATCH THE ATTRIBUTES ASSOCIATED WITH THE DIRECTIVE: currentTime
+		scope.$watch(attrs.currentTime, function (value) {				// WATCH THE ATTRIBUTES ASSOCIATED WITH THE DIRECTIVE: currentTime
 			format = value;												// AND CHANGE THE VALUE OF THE FORMAT IF THERE IS A CHANGE
 			updateTimeAndFormat();										// THEN CALL THE updateTimeAndFormat() FUNCTION
 		});

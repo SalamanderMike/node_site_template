@@ -43,7 +43,7 @@ angular.module('Router', ['ngRoute', 'ngSanitize', 'pascalprecht.translate'])
         });
     }])
     .run(function ($rootScope) {                                                        // SLIDING SIDE MENU
-        document.addEventListener('keyup', function(e) {
+        document.addEventListener('keyup', function(e) {                                // LISTEN FOR CLICK TO CLOSE DRAWER
             if (e.keyCode === 27)
                 $rootScope.$broadcast('escapePressed', e.target);
             });

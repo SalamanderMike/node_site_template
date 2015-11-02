@@ -43,16 +43,17 @@
      mdtemplate="partials/medium.html">
 </section>
 
-<h1 id="menu-activate" ng-click="app.showLeft($event)">=</h1>
-<menu visible="leftVisible" alignment="left">
-	<menu-item hash="first-page">BINDING</menu-item>
-	<menu-item hash="second-page">FILTERS</menu-item>
-	<menu-item hash="third-page">WATCH</menu-item>
-	<menu-item hash="fourth-page">TASKS</menu-item>
-	<menu-item hash="fifth-page">LANGUAGE</menu-item>
-</menu>
+<div id="drawer-activate" ng-click="app.showLeft($event)"><span class="fa fa-bars"></span></div>
 
-	<section class="'title'">
+<drawer visible="leftVisible" alignment="left">
+	<item title="bind">{{ 'BIND' | translate }}</item>
+	<item title="filter">{{ 'FILTER' | translate }}</item>
+	<item title="update">{{ 'UPDATE' | translate }}</item>
+	<item title="task">{{ 'TASK' | translate }}</item>
+	<item title="locale">{{ 'LOCALE' | translate }}</item>
+</drawer>
+
+	<section class="'title'" ng-hide="smallView">
 		<h1 translate="TITLE"></h1>	
 		<p translate="SUBTITLE"></p>
 		<span>

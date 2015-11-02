@@ -37,6 +37,29 @@ angular.module('Controllers', [])
 			});
 		};
 
+
+
+// CONTROLLER FROM .directives
+		// var pages = $scope.pages = [];
+
+		// $scope.select = function(page) {
+		// 	console.log(page);
+		// 	angular.forEach(pages, function (page) {
+		// 		page.selected = false;
+		// 	});
+		// 	page.selected = true;
+		// };
+
+		// this.addPage = function(page) {
+		// 	if (pages.length === 0) $scope.select(page);
+		// 	pages.push(page);
+		// };
+
+
+
+
+
+
 // SLIDING SIDE MENU
 		$scope.leftVisible = false;
 		$scope.rightVisible = false;
@@ -63,6 +86,10 @@ angular.module('Controllers', [])
 			$scope.$apply(function() {
 				app.close(); 
 			});
+		}
+
+		app.navigate = function (title) {
+			console.log(title);
 		}
 
 // SECTION: TRANSLATION

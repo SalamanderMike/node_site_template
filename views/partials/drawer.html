@@ -1,0 +1,4 @@
+<div 	ng-class='{ show: visible, left: alignment === \"left\", right: alignment === \"right\" }' 
+		ng-repeat='page in pages track by $index'
+		ng-transclude><a href="" ng-click='navigate()'>{{page.title}}</a>
+</div>
