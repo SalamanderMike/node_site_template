@@ -47,7 +47,6 @@ angular.module('Components', [])
 			var pages = $scope.pages = [];
 
 			$scope.select = function(page) {
-				console.log(page);
 				angular.forEach(pages, function (page) {
 					page.selected = false;
 				});
@@ -93,12 +92,10 @@ angular.module('Components', [])
 		restrict: 'E',
 		transclude: true,
 		scope: { title: '@' },
-		link: function($scope, element, attrs, tabsController) {
-			var pages = $scope.pages = [''];
+		controller: function($scope, $element) {
+			var pages = $scope.pages = [];
 			$scope.navigate = function() {
-				console.log(window.location.title);
 				window.location.title = $scope.title;
-				console.log($scope.title);
 			};
 			$scope.select = function(page) {
 				console.log(page);
@@ -107,7 +104,15 @@ angular.module('Components', [])
 				});
 				page.selected = true;
 			};
-
+			$scope.addPage = function(page) {
+				if (pages.length === 0) $scope.select(page);
+				pages.push(page);
+			};
+		},
+		link: function($scope, $element, $attrs) {
+			
+			$scope.addPage($scope);
+			// $scope.app.test();
 		},
 
 		template: "<div ng-repeat='page in pages' ng-click='select(page)' ng-transclude>{{ page.title }}</div>"

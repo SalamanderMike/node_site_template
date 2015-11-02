@@ -7,6 +7,7 @@ angular.module('Controllers', [])
 		$scope.languages = ['中国（简体)','English'];
 		$scope.disable = false;										// ENABLE FUNCTIONALITY
 		$scope.focusFocus = false;
+		$scope.smallView = false;
 		$scope.red = "red";
 
 // SECTION: TODO
@@ -39,6 +40,7 @@ angular.module('Controllers', [])
 
 
 
+
 // CONTROLLER FROM .directives
 		// var pages = $scope.pages = [];
 
@@ -55,9 +57,9 @@ angular.module('Controllers', [])
 		// 	pages.push(page);
 		// };
 
-
-
-
+		app.test = function() {
+			console.log("TEST");
+		}
 
 
 // SLIDING SIDE MENU
@@ -70,6 +72,7 @@ angular.module('Controllers', [])
 		};
 
 		app.showLeft = function(e) {
+			$scope.smallView = true;
 			$scope.leftVisible = true;
 			e.stopPropagation();
 		};

@@ -7,7 +7,8 @@
 <!-- ANGULAR EXAMPLE: UPDATING WITH $interval and $watch -->
 <!-- ANGULAR EXAMPLE: TODO LIST -->
 
-<tabs class="panels">	<!-- THE tabs ELEMENT IS REPLACED BY ELEMENTS IN .directive "tabs" -->
+
+<tabs class="panels" ng-hide="smallView">	<!-- THE tabs ELEMENT IS REPLACED BY ELEMENTS IN .directive "tabs" -->
 
 	<page title="{{ 'BIND' | translate }}" class="content">	<!-- THE page ELEMENT IS REPLACED BY ELEMENTS IN .directive "page" -->
 		<input type="text" class="input-bg" ng-model="app.yourName" placeholder="{{ 'enterName' | translate }}" auto-focus>
@@ -57,7 +58,6 @@
 	</page>
 
 </tabs>
-
 
 
 <!-- <button ng-click="clickConnect('Imgur')" class="btn">Imjur</button>
