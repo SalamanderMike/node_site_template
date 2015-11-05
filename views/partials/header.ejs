@@ -37,7 +37,7 @@
 <body ng-view>
 <div id="background">
 <section responsive="partials/large.html" 
-     smbreak=788
+     smbreak=667
      smtemplate="partials/small.html"
      mdbreak=1024
      mdtemplate="partials/medium.html">
@@ -46,11 +46,11 @@
 <div id="drawer-activate" ng-click="app.showLeft($event)"><span class="fa fa-bars"></span></div>
 
 <drawer visible="leftVisible" alignment="left">
-	<item title="bind">{{ 'BIND' | translate }}</item>
-	<item title="filter">{{ 'FILTER' | translate }}</item>
-	<item title="update">{{ 'UPDATE' | translate }}</item>
-	<item title="task">{{ 'TASK' | translate }}</item>
-	<item title="locale">{{ 'LOCALE' | translate }}</item>
+	<item title="{{ 'BIND' | translate }}"></item>
+	<item title="{{ 'FILTER' | translate }}"></item>
+	<item title="{{ 'UPDATE' | translate }}"></item>
+	<item title="{{ 'TASK' | translate }}" ng-show="test"></item>
+	<item title="{{ 'LOCALE' | translate }}"></item>
 </drawer>
 
 	<section class="'title'">

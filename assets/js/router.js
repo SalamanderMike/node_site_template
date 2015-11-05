@@ -1,5 +1,5 @@
 angular.module('Router', ['ngRoute', 'ngSanitize', 'pascalprecht.translate'])
-    .config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
+    .config(function ($routeProvider, $locationProvider) {
         $routeProvider
             .when('/', {
                 title:          '您好',
@@ -20,7 +20,7 @@ angular.module('Router', ['ngRoute', 'ngSanitize', 'pascalprecht.translate'])
             enabled: true,
             requireBase: false
         });
-    }])
+    })
     .config(function ($translateProvider) {
         $translateProvider
         .useStaticFilesLoader({
@@ -33,28 +33,23 @@ angular.module('Router', ['ngRoute', 'ngSanitize', 'pascalprecht.translate'])
         .determinePreferredLanguage()
         .useSanitizeValueStrategy('escapeParameters');
     })
-    .run(['$location', '$rootScope', function ($location, $rootScope) {                 // DYNAMICALLY CHANGE <head><title>
+    .run(function ($location, $rootScope) {                                             // DYNAMICALLY CHANGE <head><title>
         $rootScope.$on('$routeChangeSuccess', function (event, current, previous) {
-
             if (current.hasOwnProperty('$$route')) {
-
                 $rootScope.title = current.$$route.title;
             }
         });
-    }])
+    })
     .run(function ($rootScope) {                                                        // SLIDING SIDE MENU
-        document.addEventListener('keyup', function(e) {                                // LISTEN FOR CLICK TO CLOSE DRAWER
-            if (e.keyCode === 27)
-                $rootScope.$broadcast('escapePressed', e.target);
-            });
+        document.addEventListener('keyup', function (e) {                               // LISTEN FOR CLICK TO CLOSE DRAWER
+            if (e.keyCode === 27) $rootScope.$broadcast('escapePressed', e.target);
+        });
 
-        document.addEventListener('click', function(e) {
+        document.addEventListener('click', function (e) {
             $rootScope.$broadcast('documentClicked', e.target);
         });
     })
-    .config([
-        '$httpProvider', 
-        function($httpProvider) {
+    .config(function ($httpProvider) {
             return $httpProvider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content');
         }
-    ]);
+    );

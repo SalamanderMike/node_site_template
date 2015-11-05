@@ -8,10 +8,14 @@
 <!-- ANGULAR EXAMPLE: TODO LIST -->
 
 
-<tabs class="panels" ng-hide="smallView">	<!-- THE tabs ELEMENT IS REPLACED BY ELEMENTS IN .directive "tabs" -->
+<tabs class="panels" ng-show="{{hideForSmallView}}">	<!-- THE tabs ELEMENT IS REPLACED BY ELEMENTS IN .directive "tabs" -->
+
+<button type="button" ng-hide="{{test}}" ng-click="app.testFunction()">Abra Cadabra!</button>
 
 	<page title="{{ 'BIND' | translate }}" class="content">	<!-- THE page ELEMENT IS REPLACED BY ELEMENTS IN .directive "page" -->
+		<div ng-show="test">
 		<input type="text" class="input-bg" ng-model="app.yourName" placeholder="{{ 'enterName' | translate }}" auto-focus>
+		</div>
 	</page>
 
 	<page title="{{ 'FILTER' | translate }}" class="content">
@@ -42,7 +46,7 @@
 			</ul>
 
 			<form ng-submit="app.addTodo()">
-				<input type="text" class="input-bg" ng-model="app.todoText" size="30" placeholder="{{'addNewTaskHere' | translate}}" focus-bool="focusFocus">
+				<input type="text" class="input-bg" ng-model="app.todoText" size="30" placeholder="{{'addNewTaskHere' | translate}}" focus-field="focusFocus">
 				<input type="submit" value="{{'ADDTASK' | translate}}" ng-click="focusFocus=true">
 			</form>
 		</div>

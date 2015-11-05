@@ -2,13 +2,18 @@
 // BUILT IN (HIDDEN) DIRECTIVES INCLUDE: ngModel, ngBind,& ngClass
 
 angular.module('Components', [])
-.directive('responsive', function ($window) {									// APPLY TEMPLATE AT BREAKPOINTS FOR RESPONSIVE DESIGN
-	return {																	// MAY USE THIS FOR EXTENSIVE SMALL VIEWPORT CHANGES
-		replace: true,
-		template: '<div ng-include="template"></div>',
-		scope: {},
 
-		link: function postLink(scope, element, attrs) {
+.directive('responsive', function ($window, $timeout) {							// APPLY TEMPLATE AT BREAKPOINTS FOR RESPONSIVE DESIGN
+	return {																	// MAY USE THIS FOR EXTENSIVE SMALL VIEWPORT CHANGES
+		template: "<div ng-include='template' views='views' pages='pages'></div>",
+		scope: { 
+			views: '=',
+			pages: '='
+		},
+		replace: true,
+		controller: 'AppController',
+		controllerAs: 'app',
+		link: function postLink(scope, element, attrs, AppController) {
 			function checkBreaks() {
 				var curBreak = $window.innerWidth,
 					template = attrs.responsive,
@@ -16,6 +21,7 @@ angular.module('Components', [])
 					mdBreak = parseInt(attrs.mdbreak);	
 
 				if (smBreak && curBreak < smBreak) {
+					scope.hideForSmallView = false;
 					curBreak = smBreak;
 					template = attrs.smtemplate;
 				} else if (mdBreak && curBreak < mdBreak) {	
@@ -23,104 +29,119 @@ angular.module('Components', [])
 					template = attrs.mdtemplate
 				}
 				
-					if (curBreak != scope.break) {									// FEED BACK TO SCOPE
-						scope.break = curBreak;
-						scope.template = template;
-					}
-				};
+				if (curBreak != scope.break) {									// FEED BACK TO SCOPE
+					scope.break = curBreak;
+					scope.template = template;
+				}
+			};
 
-				checkBreaks(element[0].clientWidth);								// CHECK WINDOW SIZE
+			checkBreaks(element[0].clientWidth);								// CHECK WINDOW SIZE
 
-				$window.onresize = function() {										// WHEN RESIZING WINDOW,
-					scope.$apply(function (){checkBreaks(element[0].clientWidth)});	// $apply TO SEND TO ANGULAR
-				};
-			}
+			$window.onresize = function() {										// WHEN RESIZING WINDOW,
+				scope.$apply(function(){checkBreaks(element[0].clientWidth)});	// $apply TO SEND TO ANGULAR
+
+			};
+
+// TEST FUNCTIONS
+
+			// $timeout(function() {
+			// 	console.log(scope.$parent.views);
+			// }, 10);
+			
+
+			scope.$watch('views', function (value) {		// TEST $watch
+				scope.views = value;
+				scope.$apply;					
+				// console.log("DIRECTIVE $WATCH TRIGGERED..." + scope.views.bind);
+			}, true);
+
+			// scope.views = {
+			// 	bind: true,
+			// 	filter: false,
+			// 	update: false,
+			// 	task: false,
+			// 	locale: false
+			// }
+		}
 	};
 })
 
 .directive('tabs', function() {													// TABS & PANELS DIRECTIVES
 	return {
+		templateUrl: '/partials/tabs.html',										// FIND HTML TEMPLATE IN PARTIALS
+		scope: {},
 		restrict: 'E',															// MATCH BY ELEMENT
 		transclude: true,														// LOOKS FOR SCOPE OUTSIDE OF THE DIRECTIVE (instead of inside)
-		scope: {},
-		controller: function($scope) {
-			var pages = $scope.pages = [];
-
-			$scope.select = function(page) {
-				angular.forEach(pages, function (page) {
-					page.selected = false;
-				});
-				page.selected = true;
-			};
-
-			this.addPage = function(page) {
-				if (pages.length === 0) $scope.select(page);
-				pages.push(page);
-			};
-		},
-		templateUrl: '/partials/tabs.html',										// FIND HTML TEMPLATE IN PARTIALS
-		replace: true
+		replace: true,
+		controller: 'AppController',
+		controllerAs: 'app'
 	};
 })
 .directive('page', function() {
 	return {
 		require: '^tabs',														// CONNECTS THIS .directive TO THE "tabs" .directive
+		template: "<div class='tab-pane' ng-class='{active: selected}' ng-transclude></div>",
+		scope: { title: '@' },													// COPIES THE VALUE OF THE 'title="...' from the DOM
 		restrict: 'E',
 		transclude: true,
-		scope: { title: '@' },													// COPIES THE VALUE OF THE 'title="...' from the DOM
-		link: function(scope, element, attrs, tabsController) {					// PASSES IN THE controller from the "tabs" .directive
-			tabsController.addPage(scope);
-		},
-		template: "<div class='tab-pane' ng-class='{active: selected}' ng-transclude></div>",
-		replace: true
+		replace: true,
+		controller: 'AppController',
+		controllerAs: 'app',
+		link: function(scope, element, attrs, AppController) {					// PASSES IN THE controller from the "tabs" .directive
+			AppController.addPage(scope);
+		}
 	};
 })
 
-.directive('drawer', function() {													// SLIDING SIDE MENU DIRECTIVES
+.directive('drawer', function() {												// SLIDING SIDE MENU DIRECTIVES
 	return {
-		restrict: 'E',
-		transclude: true,
+		template: "<div ng-class='{ show: visible, left: alignment === \"left\", right: alignment === \"right\" }' ng-transclude></div>",
 		scope: {
 			visible: '=',
 			alignment: '@'
 		},
-		template: "<div ng-class='{ show: visible, left: alignment === \"left\", right: alignment === \"right\" }' ng-transclude></div>"
+		restrict: 'E',
+		transclude: true
 	};
 }) 
 .directive('item', function() {
 	return {
-		restrict: 'E',
-		transclude: true,
-		scope: { title: '@' },
-		controller: function($scope, $element) {
-			var pages = $scope.pages = [];
-			$scope.navigate = function() {
-				window.location.title = $scope.title;
-			};
-			$scope.select = function(page) {
-				console.log(page);
-				angular.forEach(pages, function (page) {
-					page.selected = false;
-				});
-				page.selected = true;
-			};
-			$scope.addPage = function(page) {
-				if (pages.length === 0) $scope.select(page);
-				pages.push(page);
-			};
+		template: "<div ng-repeat='page in pages' ng-click='app.showSelect(page)' views='views' pages='pages' test='test'>{{ page.title }}</div>",
+		scope: { 
+			title: '@',
+			views: '=',
+			pages: '=',
+			test: '='
 		},
-		link: function($scope, $element, $attrs) {
-			
-			$scope.addPage($scope);
-			// $scope.app.test();
-		},
+		restrict: 'EA',
+		// transclude: true,
+		controller: 'AppController',
+		controllerAs: 'app',
+		link: function(scope, element, attrs, AppController) {
+			AppController.addPage(scope);
 
-		template: "<div ng-repeat='page in pages' ng-click='select(page)' ng-transclude>{{ page.title }}</div>"
+// TEST FUNCTIONS
+
+			// AppController.showSelect = function(item) {
+			// 	scope.$parent.test = false;
+
+			// 	AppController.testFunction();
+
+			// 	angular.forEach(Object.keys(scope.views), function (page) {
+			// 		scope.views[page] = false;
+			// 		scope.$apply;
+			// 	});
+			// 	scope.views[item.title] = true;
+			// 	scope.$apply;
+
+
+			// }
+		}
 	};
 })
 
-.directive('currentTime', ['$interval','dateFilter', function ($interval, dateFilter) {	// TIME & DATE DIRECTIVE
-	function link(scope, element, attrs) {
+.directive('currentTime', function ($interval, dateFilter) {			// TIME & DATE DIRECTIVE
+	return function (scope, element, attrs) {
 		var format,
 			tickTock;
 
@@ -141,28 +162,19 @@ angular.module('Components', [])
 			updateTimeAndFormat();
 		}, 1000);
 	}
-
-	return {
-		link: link 
-	};
-}])
-
+})
 
 .directive('autoFocus', function ($timeout) {							// AUTOFOCUS INPUT FIELD ON PAGE LOAD
-    return {
-        link: {
-            post: function postLink(scope, element, attr) {
-                $timeout(function () {
-					element[0].focus();
-				});
-            }
-        }
+    return function postLink(scope, element, attr) {
+        $timeout(function() {
+			element[0].focus();
+		});
     }
 })
-.directive('focusBool', function ($timeout) { 							// INPUT FIELD FOCUS ON CLICK
+.directive('focusField', function ($timeout) { 							// INPUT FIELD FOCUS ON CLICK
     return function (scope, element, attrs) {
-        scope.$watch(attrs.focusBool, function (value) {
-            if (value) $timeout(function () {element[0].focus();});
+        scope.$watch(attrs.focusField, function (value) {
+            if (value) $timeout(function() {element[0].focus();} );
         });
     }
 });
