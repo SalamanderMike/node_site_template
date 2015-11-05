@@ -69,8 +69,8 @@ angular.module('Components', [])
 .directive('tabs', function() {													// TABS & PANELS DIRECTIVES
 	return {
 		templateUrl: '/partials/tabs.html',										// FIND HTML TEMPLATE IN PARTIALS
-		scope: {},
-		restrict: 'E',															// MATCH BY ELEMENT
+		scope: true,
+		restrict: 'EA',															// MATCH BY ELEMENT
 		transclude: true,														// LOOKS FOR SCOPE OUTSIDE OF THE DIRECTIVE (instead of inside)
 		replace: true,
 		controller: 'AppController',

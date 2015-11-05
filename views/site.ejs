@@ -8,9 +8,8 @@
 <!-- ANGULAR EXAMPLE: TODO LIST -->
 
 
-<tabs class="panels" ng-show="{{hideForSmallView}}">	<!-- THE tabs ELEMENT IS REPLACED BY ELEMENTS IN .directive "tabs" -->
+<tabs class="panels" ng-show="test">	<!-- THE tabs ELEMENT IS REPLACED BY ELEMENTS IN .directive "tabs" -->
 
-<button type="button" ng-hide="{{test}}" ng-click="app.testFunction()">Abra Cadabra!</button>
 
 	<page title="{{ 'BIND' | translate }}" class="content">	<!-- THE page ELEMENT IS REPLACED BY ELEMENTS IN .directive "page" -->
 		<div ng-show="test">
@@ -63,23 +62,18 @@
 
 </tabs>
 
+<button type="button" ng-show="test" ng-click="app.testFunction()">Abra Cadabra!</button>
+
+
+
+
+
 
 <!-- <button ng-click="clickConnect('Imgur')" class="btn">Imjur</button>
 <div ng-show="me">
     <p>Successfully connected with {{provider}}</p>
     <p>Hello {{me.name}}</p>
 </div> -->
-
-
-
-
-
-
-
-
-
-
-
 
 
 

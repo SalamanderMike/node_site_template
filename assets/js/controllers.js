@@ -64,19 +64,19 @@ angular.module('Controllers', [])
 		// 	page.selected = true;
 		// };
 
-		$scope.test = true;
+		$rootScope.test = true;
 		$scope.testObj = {
 			bind: false,
 		}
 
 		app.testFunction = function() {
 			// $scope.testObj.bind = true;
-			console.log($scope.test);
+			console.log($rootScope.test);
 		}
 
-		$scope.$watch('test', function () {		// TEST $watch
-			console.log("TEST $WATCH TRIGGERED...");
-			$scope.test = true;
+		$scope.$watch('test', function (value) {		// TEST $watch
+			console.log("TEST $WATCH TRIGGERED..." + value);
+			$rootScope.test = value;
 			$scope.$apply;
 		}, true);
 
@@ -104,7 +104,15 @@ angular.module('Controllers', [])
 		var pages = $scope.pages = [];
 
 		app.showSelect = function(item) {
-			$scope.test = false;
+
+			if ($rootScope.test === true) {
+				$rootScope.test = false;
+				$scope.$apply;
+			} else {
+				$rootScope.test = true;
+				$scope.$apply;
+			}
+
 			app.testFunction();
 
 			angular.forEach(Object.keys($scope.views), function (page) {
