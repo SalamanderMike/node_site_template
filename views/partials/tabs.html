@@ -1,8 +1,8 @@
-<div class="tabbable"> 		<!-- TAB 部分-->
-  <ul class="nav nav-tabs" > 																<!-- USING BOOTSTRAP TAB STRUCTURE -->
-    <span ng-repeat="page in pages" ng-class="{active:page.selected}">		<!-- SELECTABLE TABS -->
-      <a href="" ng-click="select(page)">{{page.title}}</a> 								<!-- TITLE OF TABS -->
+<div class="tabbable"> 													<!-- TAB 部分-->
+  <ul class="nav nav-tabs" > 											<!-- USING BOOTSTRAP TAB STRUCTURE -->
+    <span ng-repeat="page in pages" ng-class="{active:page.selected}">	<!-- SELECTABLE TABS  ngClass HANDLES HOVER:FOCUS EFFECTS-->
+      <a href="" ng-click="select(page)">{{page.title}}</a> 			<!-- TITLE OF TABS -->
     </span> 
   </ul> 
-  <div class="tab-content" ng-transclude></div> 											<!-- THIS IS WHERE CONTENTS OF EACH PANE GOES -->
+  <div class="tab-content" ng-transclude></div> 						<!-- THIS IS WHERE 'page' DIRECTIVE IS TRANSCLUDED -->
 </div>

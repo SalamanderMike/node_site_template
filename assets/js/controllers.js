@@ -1,5 +1,5 @@
 angular.module('Controllers', [])
-	.controller('AppController', ['$scope', '$rootScope', '$translate', '$timeout', function ($scope, $rootScope, $translate, $timeout) {
+	.controller('AppController', ['$scope', '$rootScope', '$translate', function ($scope, $rootScope, $translate) {
 		
 // VARIABLES
 		var app = this;
@@ -7,133 +7,34 @@ angular.module('Controllers', [])
 		$scope.languages = ['中国（简体)','English'];
 		$scope.disable = false;										// ENABLE FUNCTIONALITY
 		$scope.focusFocus = false;
-		$scope.smallView = false;
-		$scope.red = "red";
+		$scope.views = {
+			BIND: true,
+			FILTER: false,
+			UPDATE: false,
+			TASK: false,
+			LOCALE: false
+		}
+
 
 // TEST AREA (HARD HAT REQUIRED)
-		$scope.hideForSmallView = true;
-		// $scope.showBind = true;
-		// $scope.showFilter = false;
-		// $scope.showUpdate = false;
-		// $scope.showTask = false;
-		// $scope.showLocale = false;
-
-		// $timeout(function() {
-		// 	$scope.views = {
-		// 		bind: false,
-		// 		filter: true,
-		// 		update: false,
-		// 		task: false,
-		// 		locale: false
-		// 	}
-		// },10)
-
-
-		// $scope.test = function(page) {
-		// 	$scope.showBind = false;
-		// 	$scope.showFilter = false;
-		// 	$scope.showUpdate = false;
-		// 	$scope.showTask = false;
-		// 	$scope.showLocale = false;			
-
-		// 	switch (page.title) {
-		// 		case "filter":
-		// 			console.log(page.title);
-		// 			console.log($scope.showFilter);
-		// 			$scope.showFilter = true;
-		// 			console.log($scope.showFilter);
-		// 			break;
-		// 		case "update":
-		// 			$scope.showUpdate = true;
-		// 			break;
-		// 		case "task":
-		// 			$scope.showTask = true;
-		// 			break;
-		// 		case "locale":
-		// 			$scope.showLocale = true;
-		// 			break;
-		// 		case "bind":
-		// 			$scope.showBind = true;
-					
-		// 	}
-
-		// 	console.log(page.title);
-		// 	angular.forEach(pages, function (page) {
-		// 		page.selected = false;
-		// 	});
-		// 	page.selected = true;
-		// };
-
-		$rootScope.test = true;
-		$scope.testObj = {
-			bind: false,
-		}
-
-		app.testFunction = function() {
-			// $scope.testObj.bind = true;
-			console.log($rootScope.test);
-		}
-
-		$scope.$watch('test', function (value) {		// TEST $watch
-			console.log("TEST $WATCH TRIGGERED..." + value);
-			$rootScope.test = value;
-			$scope.$apply;
-		}, true);
-
-		$scope.$watch('views', function (value) {		// TEST $watch
-			// console.log("CONTROLLER $WATCH TRIGGERED..." + value.bind);
-			$scope.views = value;
-			// $scope.$apply;
-		}, true);
-
 // END OF TEST AREA
+	
 
-
-
-
-
-		$scope.views = {
-			bind: false,
-			filter: true,
-			update: false,
-			task: false,
-			locale: false
+// SECTION: NAV-TABS
+		app.tabFunction = function(tab) {
+			views = $scope.views;
+			angular.forEach(Object.keys(views), function (page) {
+				if (tab != page) {
+					views[page] = false;
+				} else {
+					views[page] = true;
+				};
+			});
+			$scope.views = views;
 		}
 
-// CONTROLLERS FROM .directives
-		var pages = $scope.pages = [];
 
-		app.showSelect = function(item) {
-
-			if ($rootScope.test === true) {
-				$rootScope.test = false;
-				$scope.$apply;
-			} else {
-				$rootScope.test = true;
-				$scope.$apply;
-			}
-
-			app.testFunction();
-
-			angular.forEach(Object.keys($scope.views), function (page) {
-				$scope.views[page] = false;
-			});
-			$scope.views[item.title] = true;
-		}
-
-		$scope.select = function(page) {
-			angular.forEach(pages, function (page) {
-				page.selected = false;
-			});
-			page.selected = true;
-		};
-
-		this.addPage = function(page) {
-			if (pages.length === 0) $scope.select(page);
-			pages.push(page);
-			$scope.pages = pages;
-		};
-
+		
 
 
 // SECTION: TODO
@@ -180,7 +81,6 @@ angular.module('Controllers', [])
 		};
 
 		app.showLeft = function(e) {
-			$scope.smallView = true;
 			$scope.leftVisible = true;
 			e.stopPropagation();
 		};
@@ -203,17 +103,20 @@ angular.module('Controllers', [])
 			console.log(title);
 		}
 
+
+
+
+
+
+
 // SECTION: TRANSLATION
 		app.chooseLanguage = function (lang) {
-
 			if (lang === "中国（简体)") {
 				$translate.use('zhCN');
 			} else if (lang === "English") {
 				$translate.use('enUS');
 			}
-
 		};
-
 	}])
 	.controller('DateCtrl', ['$scope', '$rootScope', function ($scope, $rootScope) {
 		$scope.disable = true;											// DISABLE TODO AND DATE EDIT FUNCTIONALITY

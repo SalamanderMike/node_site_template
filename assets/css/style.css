@@ -90,7 +90,7 @@ a.red {
     text-decoration: none;
     color: #fff6b7;
 }
-.nav-tabs > span.active > a,						/*SELECTED TAB*/
+.nav-tabs > span.active > a,					/*SELECTED TAB*/
 .nav-tabs > span.active > a:focus,
 .nav-tabs > span.active > a:hover{
     background-color: rgba(0, 0, 0, 0) !important;
@@ -107,6 +107,10 @@ a.red {
 
 .tab-pane {										/* SPACE INDIDE PANEL BOX*/
 	width: 100%;
+	margin: 3%;
+	color: #dbdbdb;
+	font-family: 'Muli', sans-serif;
+	font-size: 1.2em;
 }
 
 .content {										/*CONTENT INSIDE .tab-pane*/
@@ -146,10 +150,9 @@ a.red {
 
 
 /*SLIDING SIDE MENU***********************************************************/
-.fa.fa-bars {
-
+#drawer-show {
+	visibility: hidden;
 }
-
 #drawer-activate {
 	position: fixed;
 	top: 5px;
@@ -157,6 +160,9 @@ a.red {
 	font-size: 4em;
 	color: #fff6b7;
 	cursor: pointer;
+}
+#spacer {
+	top: 100px;
 }
 
 .border-box {
@@ -185,37 +191,29 @@ drawer > div {
 	-o-transition: transform ease 250ms;
 	transition: transform ease 250ms;
 }
-drawer > div.left {
-	background: rgba(0, 0, 0, .6);
+drawer > div {
+	background: rgba(0, 0, 0, .7);
+	height: 100%;
 	left: -500px;
 	font-family: 'Josefin Sans', sans-serif;
-	font-size: 6em;
+	font-size: 5em;
 }
-drawer > div.show.left {
+drawer > div.show {
 	transform: translate3d(500px, 0, 0);
 	-ms-transform: translate3d(500px, 0, 0);
 	-webkit-transform: translate3d(500px, 0, 0);
 	-o-transform: translate3d(500px, 0, 0);
 	-moz-transform: translate3d(500px, 0, 0);
 }
-drawer > div.right {
-	background: #6B1919;
-	right: -500px;
-}
-drawer > div.show.right {
-	transform: translate3d(-500px, 0, 0);
-	-ms-transform: translate3d(-500px, 0, 0);
-	-webkit-transform: translate3d(-500px, 0, 0);
-	-o-transform: translate3d(-500px, 0, 0);
-	-moz-transform: translate3d(-500px, 0, 0);
-}
-drawer > div > item {
+drawer > div > span {
+	top: 100px;
 	display: block;
+	line-height: 100%;
 }
-drawer > div > item > div {
+drawer > div > span > a {
 	position: relative;
 	float: left;
-	top: 40px;
+	top: 100px;
 	width: 100%;
 	margin: 0;
 	padding: 10px 15px;
@@ -223,26 +221,12 @@ drawer > div > item > div {
 	cursor: pointer;
 	box-sizing: border-box;
 	-moz-box-sizing: border-box;
+	line-height: 100%;
 	color: #fff6b7;
 }
-drawer > div > item > div:hover {
+drawer > div > span:hover {
 	color: #30659b;
 }
-drawer > div > item > div > span {
-	float: left;
-	color: inherit;
-}
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -250,11 +234,11 @@ drawer > div > item > div > span {
 
 
 /*RESPONSIVE DESIGN **********************************************************/
-/*test Medium size*/
+/*test MEDIUM size*/
 @media (max-width: 1024px) {
 	.nav.nav-tabs {
 		width: 482px;
-		font-size: 1.2em;
+		font-size: 1em;
 	}
 
 	.panels {										/*PANEL BOX DIMENSIONS*/
@@ -271,110 +255,50 @@ drawer > div > item > div > span {
 	}
 }
 
-/*test Small size*/
+/*test SMALL size*/
 @media (max-width: 667px) {
 
-/*	.panels {
+	#hide-tabs {
 		visibility: hidden;
-	}*/
+	}
 
-	.panels.active:focus{
-	    background-color: rgba(0, 0, 0, 0) !important;
-	    border: none;
-	    color: #fff6b7;
-	    text-decoration: none;
+	#drawer-show {
+	visibility: visible;
+	}
+
 }
 
-
-
-
-
-/*	.nav.nav-tabs {
-		min-width: 140px;
-		width: 140px;
+/*iPhone size*/
+/* 6 & 6s Portrait and Landscape */
+@media only screen
+  and (min-device-width: 375px)
+  and (max-device-width: 667px)
+  and (-webkit-min-device-pixel-ratio: 2) {
+	body h1 {
 		font-size: 2em;
 	}
-
-	.nav-tabs > span {
-		margin: 50px auto;
+		body section {
+		font-size: 3em;
+		margin: 0 0 100px 0;
 	}
 
-	.tab-content{
-		min-width: 20%;
-		width: 100%;
-	    padding: 1% 0%;
-}
-
-	.panels {
-		width: 100%;
-		text-align: center;
+	#hide-tabs {
+		visibility: hidden;
 	}
 
-	.content {
-		margin: 20px 0px;
-		font-size: 1em;
+	#drawer-show {
+		visibility: visible;
 	}
 
-	.tasks {
-		margin: 0 20%;
-	}*/
+	drawer > div {
+		font-size: 6.2em;
+	}
+
+	.tab-pane {
+		font-size: 3.5em;
+	}
 
 }
-
-	/*iPhone size*/
-	/* 6 & 6s Portrait and Landscape */
-	@media only screen
-	  and (min-device-width: 375px)
-	  and (max-device-width: 667px)
-	  and (-webkit-min-device-pixel-ratio: 2) {
-		body h1 {
-			font-size: 2em;
-		}
-  		body section {
-			font-size: 3em;
-			margin: 0 0 100px 0;
-		}
-
-		.panels {
-			visibility: hidden;
-		}
-
-
-
-
-
-
-
-/*		.nav.nav-tabs {
-			min-width: 50%;
-			width: 50%;
-			font-size: 5em;
-		}
-
-		.nav-tabs > span {
-			margin: 50px auto;
-		}
-
-		.tab-content{
-			min-width: 20%;
-			width: 100%;
-	}
-
-		.panels {
-			width: 100%;
-			text-align: center;
-		}
-
-		.content {
-			margin: 20px 0px;
-			font-size: 3em;
-		}
-
-		.tasks {
-			margin: 0 20%;
-		}*/
-
-	}
 
 
 

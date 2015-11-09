@@ -8,64 +8,67 @@
 <!-- ANGULAR EXAMPLE: TODO LIST -->
 
 
-<tabs class="panels" ng-show="test">	<!-- THE tabs ELEMENT IS REPLACED BY ELEMENTS IN .directive "tabs" -->
+
+<div> 																							<!-- TAB 部分-->
+	<ul class="nav nav-tabs" id="hide-tabs"> 																	<!-- USING BOOTSTRAP TAB STRUCTURE -->
+	    <span ng-repeat="(key,val) in views track by $index" ng-class="{active:val}">			<!-- SELECTABLE TABS  ngClass HANDLES HOVER:FOCUS EFFECTS-->
+			<a href="" ng-click="app.tabFunction(key)">{{key | translate}}</a>
+	    </span> 
+	</ul> 
 
 
-	<page title="{{ 'BIND' | translate }}" class="content">	<!-- THE page ELEMENT IS REPLACED BY ELEMENTS IN .directive "page" -->
-		<div ng-show="test">
-		<input type="text" class="input-bg" ng-model="app.yourName" placeholder="{{ 'enterName' | translate }}" auto-focus>
+	<div class="tab-content">
+
+		<div title="{{ 'BIND' | translate }}" class="tab-pane" ng-class="{active : views.BIND}">
+			<input type="text" class="input-bg" ng-model="app.yourName" placeholder="{{ 'enterName' | translate }}" auto-focus>
 		</div>
-	</page>
 
-	<page title="{{ 'FILTER' | translate }}" class="content">
-		2015-10-05 | fullDate<br>{{'isFilteredTo' | translate}}: {{ '2015-10-05' | date:'fullDate' }}<br>
-		123456 | currency<br>{{'isFilteredTo' | translate}}: {{ 123456 | currency }}<br>
-		<br>{{ page.title }}
-		98765.4321 | number<br>{{'isFilteredTo' | translate}}: {{ 98765.4321 | number }}<br>
-
-	</page>
-
-	<page title="{{ 'UPDATE' | translate }}" class="content">
-		{{'editDateFormat' | translate}}: <input ng-hide="disable" ng-model="format"><span ng-show="disable">Editing temporarily disabled</span> <br/>
-		{{'currentTimeIs' | translate}}:<br> <span current-time="format"></span>
-	</page>
-
-	<page title="{{ 'TASK' | translate }}" class="content">
-		<h2 ng-show="disable">Tasks Disabled</h2>
-		<div class="tasks" ng-hide="disable">
-			<span>{{app.remaining()}} {{'of' | translate}} {{app.todos.length}} {{'remaining' | translate}}</span>
-			[ <a href="" class="red" ng-click="app.clear()">{{'remove done items' | translate}}</a> ]
-
-			<ul class="unstyled">
-				<div ng-repeat="todo in app.todos">
-					<label class="done-{{todo.done}}">
-						<input type="checkbox" ng-model="todo.done">
-					{{todo.text}}</label>
-				</div>
-			</ul>
-
-			<form ng-submit="app.addTodo()">
-				<input type="text" class="input-bg" ng-model="app.todoText" size="30" placeholder="{{'addNewTaskHere' | translate}}" focus-field="focusFocus">
-				<input type="submit" value="{{'ADDTASK' | translate}}" ng-click="focusFocus=true">
-			</form>
+		<div title="{{ 'FILTER' | translate }}" class="tab-pane" ng-class="{active : views.FILTER}"><!--  ng-show="views.FILTER" -->
+			2015-10-05 | fullDate<br>{{'isFilteredTo' | translate}}: {{ '2015-10-05' | date:'fullDate' }}<br>
+			123456 | currency<br>{{'isFilteredTo' | translate}}: {{ 123456 | currency }}<br>
+			<br>{{ page.title }}
+			98765.4321 | number<br>{{'isFilteredTo' | translate}}: {{ 98765.4321 | number }}<br>
 		</div>
-	</page>
 
-	<page title="{{ 'LOCALE' | translate }}" class="content">
-	{{'chooseLanguage' | translate}}: 
-		<select ng-model="choice" 
-				ng-change="app.chooseLanguage(choice)" 
-				data-ng-options="choice for choice in languages">
-			<option value="" selected>Select Language</option>GIT
-		</select>
-	</page>
+		<div title="{{ 'UPDATE' | translate }}" class="tab-pane" ng-class="{active : views.UPDATE}"><!--  ng-show="views.UPDATE" -->
+			{{'editDateFormat' | translate}}: <input ng-hide="disable" ng-model="format"><span ng-show="disable">Editing temporarily disabled</span> <br/>
+			{{'currentTimeIs' | translate}}:<br> <span current-time="format"></span>
+		</div>
 
-</tabs>
+		<div title="{{ 'TASK' | translate }}" class="tab-pane" ng-class="{active : views.TASK}"><!--  ng-show="views.TASK" -->
+			<h2 ng-show="disable">Tasks Disabled</h2>
+			<div class="tasks" ng-hide="disable">
+				<span>{{app.remaining()}} {{'of' | translate}} {{app.todos.length}} {{'remaining' | translate}}</span>
+				[ <a href="" class="red" ng-click="app.clear()">{{'remove done items' | translate}}</a> ]
 
-<button type="button" ng-show="test" ng-click="app.testFunction()">Abra Cadabra!</button>
+				<ul class="unstyled">
+					<div ng-repeat="todo in app.todos">
+						<label class="done-{{todo.done}}">
+							<input type="checkbox" ng-model="todo.done">
+							{{todo.text}}
+						</label>
+					</div>
+				</ul>
 
+				<form ng-submit="app.addTodo()">
+					<input type="text" class="input-bg" ng-model="app.todoText" size="30" placeholder="{{'addNewTaskHere' | translate}}" focus-field="focusFocus">
+					<input type="submit" value="{{'ADDTASK' | translate}}" ng-click="focusFocus=true">
+				</form>
+			</div>
+		</div>
 
+		<div title="{{ 'LOCALE' | translate }}" class="tab-pane" ng-class="{active : views.LOCALE}"><!--  ng-show="views.LOCALE" -->
+			{{'chooseLanguage' | translate}}: 
+			<select ng-model="choice" 
+					ng-change="app.chooseLanguage(choice)" 
+					data-ng-options="choice for choice in languages">
+					<option value="" selected>Select Language</option>
+			</select>
+		</div>
 
+	</div>
+
+</div>
 
 
 
@@ -74,13 +77,6 @@
     <p>Successfully connected with {{provider}}</p>
     <p>Hello {{me.name}}</p>
 </div> -->
-
-
-
-
-
-
-
 
 
 
