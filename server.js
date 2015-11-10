@@ -1,4 +1,5 @@
-var config = require('./assets/resources/config.js').env,	// ENVIRONMENTAL VARIABLES FILE
+var config = 
+	// require('./assets/resources/config.js').env,
 	express = require('express'),
 	bodyParser  = require('body-parser'),
 	path = require('path'),
@@ -34,8 +35,6 @@ app.listen(process.env.PORT || 3000, function(){
 	console.log("NODEMON IS LISTENING IN THE NODE VAN... localhost:3000");
 });
 
-
-console.log(config.development.TEST); // ENVIRONMENTAL VARIABLES TEST
 
 // EXPORT ***************************************
 module.exports = app;
