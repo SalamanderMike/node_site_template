@@ -33,7 +33,7 @@
 	<link 	rel="stylesheet" type="text/css" href="css/style.css" />
 
 </head>
-<body ng-view>
+<body class="ng-view" ng-cloak>
 	<div id="background">
 
 <!-- BROWSER WINDOW SIZE DETECTOR -->
@@ -50,7 +50,7 @@
 		<drawer visible="leftVisible" alignment="left">
 			<div class="nav nav-tabs" id="spacer">
 				<div ng-repeat="(key,val) in views track by $index" ng-class="{active:val}">
-					<a href="" ng-click="app.tabFunction(key)">{{key | translate}}</a><br>
+					<a href="" ng-click="app.tabFunction(key)" ng-bind="key | translate"></a><br>
 				</div> 
 			</div>
 		</drawer>

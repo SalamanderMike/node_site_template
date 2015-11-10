@@ -1,6 +1,6 @@
 angular.module('Controllers', [])
 	.controller('AppController', ['$scope', '$rootScope', '$translate', function ($scope, $rootScope, $translate) {
-		
+		console.log("ENTERING THE CONTROLER...");
 // VARIABLES
 		var app = this;
 		$scope.format = 'M/d/yyyy h:mm:ss a';						// DATE AND TIME FORMAT
@@ -22,6 +22,7 @@ angular.module('Controllers', [])
 
 // SECTION: NAV-TABS
 		app.tabFunction = function(tab) {
+			console.time("TAB-FUNCTION");							// PERFORMANCE TESTING
 			views = $scope.views;
 			angular.forEach(Object.keys(views), function (page) {
 				if (tab != page) {
@@ -31,6 +32,7 @@ angular.module('Controllers', [])
 				};
 			});
 			$scope.views = views;
+			console.timeEnd("TAB-FUNCTION");						// PERFORMANCE TESTING
 		}
 
 
@@ -99,10 +101,6 @@ angular.module('Controllers', [])
 			});
 		}
 
-		app.navigate = function (title) {
-			console.log(title);
-		}
-
 
 
 
@@ -111,11 +109,13 @@ angular.module('Controllers', [])
 
 // SECTION: TRANSLATION
 		app.chooseLanguage = function (lang) {
+			console.time("LOCALIZE-FUNCTION");							// PERFORMANCE TESTING
 			if (lang === "中国（简体)") {
 				$translate.use('zhCN');
 			} else if (lang === "English") {
 				$translate.use('enUS');
 			}
+			console.timeEnd("LOCALIZE-FUNCTION");						// PERFORMANCE TESTING
 		};
 	}])
 	.controller('DateCtrl', ['$scope', '$rootScope', function ($scope, $rootScope) {

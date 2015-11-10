@@ -12,7 +12,7 @@
 <div> 																							<!-- TAB 部分-->
 	<ul class="nav nav-tabs" id="hide-tabs"> 													<!-- USING BOOTSTRAP TAB STRUCTURE -->
 	    <div ng-repeat="(key,val) in views track by $index" ng-class="{active:val}">			<!-- SELECTABLE TABS  ngClass HANDLES HOVER:FOCUS EFFECTS-->
-			<a href="" ng-click="app.tabFunction(key)">{{key | translate}}</a>
+			<a href="" ng-click="app.tabFunction(key)" ng-bind="key | translate"></a>
 	    </div> 
 	</ul> 
 

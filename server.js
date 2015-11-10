@@ -1,5 +1,5 @@
 var config = 
-	// require('./assets/resources/config.js').env,
+	// require('./assets/resources/config.js').env,											// DISABLED FOR PRODUCTION
 	express = require('express'),
 	bodyParser  = require('body-parser'),
 	path = require('path'),

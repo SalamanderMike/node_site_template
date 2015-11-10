@@ -7,8 +7,6 @@ angular.module('Components', [])
 	return {																	// MAY USE THIS FOR EXTENSIVE SMALL VIEWPORT CHANGES
 		template: "<div ng-include='template'></div>",
 		scope: {},
-		controller: 'AppController',
-		controllerAs: 'app',
 		link: function postLink(scope, element, attrs, AppController) {
 			function checkBreaks() {
 				var curBreak = $window.innerWidth,
