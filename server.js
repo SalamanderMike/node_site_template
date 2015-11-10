@@ -1,4 +1,4 @@
-var config = require('./assets/resources/config').env,	// ENVIRONMENTAL VARIABLES FILE
+var config = require('./assets/resources/config.js').env,	// ENVIRONMENTAL VARIABLES FILE
 	express = require('express'),
 	bodyParser  = require('body-parser'),
 	path = require('path'),
