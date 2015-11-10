@@ -49,14 +49,14 @@
 		<div ng-click="app.showLeft($event)" id="drawer-activate"><span class="fa fa-bars"></span></div>
 		<drawer visible="leftVisible" alignment="left">
 			<div class="nav nav-tabs" id="spacer">
-				<span ng-repeat="(key,val) in views track by $index" ng-class="{active:val}">
-					<a href="" ng-click="app.tabFunction(key)">{{key | translate}}</a>
-				</span> 
+				<div ng-repeat="(key,val) in views track by $index" ng-class="{active:val}">
+					<a href="" ng-click="app.tabFunction(key)">{{key | translate}}</a><br>
+				</div> 
 			</div>
 		</drawer>
 	</div>
 
-	<section class="'title'">
+	<section>
 		<h1 translate="TITLE"></h1>	
 		<p translate="SUBTITLE"></p>
 		<span>

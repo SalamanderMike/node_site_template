@@ -10,10 +10,10 @@
 
 
 <div> 																							<!-- TAB 部分-->
-	<ul class="nav nav-tabs" id="hide-tabs"> 																	<!-- USING BOOTSTRAP TAB STRUCTURE -->
-	    <span ng-repeat="(key,val) in views track by $index" ng-class="{active:val}">			<!-- SELECTABLE TABS  ngClass HANDLES HOVER:FOCUS EFFECTS-->
+	<ul class="nav nav-tabs" id="hide-tabs"> 													<!-- USING BOOTSTRAP TAB STRUCTURE -->
+	    <div ng-repeat="(key,val) in views track by $index" ng-class="{active:val}">			<!-- SELECTABLE TABS  ngClass HANDLES HOVER:FOCUS EFFECTS-->
 			<a href="" ng-click="app.tabFunction(key)">{{key | translate}}</a>
-	    </span> 
+	    </div> 
 	</ul> 
 
 
@@ -23,21 +23,25 @@
 			<input type="text" class="input-bg" ng-model="app.yourName" placeholder="{{ 'enterName' | translate }}" auto-focus>
 		</div>
 
-		<div title="{{ 'FILTER' | translate }}" class="tab-pane" ng-class="{active : views.FILTER}"><!--  ng-show="views.FILTER" -->
-			2015-10-05 | fullDate<br>{{'isFilteredTo' | translate}}: {{ '2015-10-05' | date:'fullDate' }}<br>
-			123456 | currency<br>{{'isFilteredTo' | translate}}: {{ 123456 | currency }}<br>
-			<br>{{ page.title }}
-			98765.4321 | number<br>{{'isFilteredTo' | translate}}: {{ 98765.4321 | number }}<br>
+		<div title="{{ 'FILTER' | translate }}" class="tab-pane" ng-class="{active : views.FILTER}">
+			<div class="content-position">
+				2015-10-05 | fullDate<br>{{'isFilteredTo' | translate}}: {{ '2015-10-05' | date:'fullDate' }}<br>
+				123456 | currency<br>{{'isFilteredTo' | translate}}: {{ 123456 | currency }}<br>
+				<br>{{ page.title }}
+				98765.4321 | number<br>{{'isFilteredTo' | translate}}: {{ 98765.4321 | number }}<br>
+			</div>
 		</div>
 
-		<div title="{{ 'UPDATE' | translate }}" class="tab-pane" ng-class="{active : views.UPDATE}"><!--  ng-show="views.UPDATE" -->
-			{{'editDateFormat' | translate}}: <input ng-hide="disable" ng-model="format"><span ng-show="disable">Editing temporarily disabled</span> <br/>
-			{{'currentTimeIs' | translate}}:<br> <span current-time="format"></span>
+		<div title="{{ 'UPDATE' | translate }}" class="tab-pane" ng-class="{active : views.UPDATE}">
+			<div class="content-position">
+				{{'editDateFormat' | translate}}: <input ng-hide="disable" ng-model="format"><span ng-show="disable">Editing temporarily disabled</span> <br/>
+				{{'currentTimeIs' | translate}}:<br> <span current-time="format"></span>
+			</div>
 		</div>
 
-		<div title="{{ 'TASK' | translate }}" class="tab-pane" ng-class="{active : views.TASK}"><!--  ng-show="views.TASK" -->
+		<div title="{{ 'TASK' | translate }}" class="tab-pane" ng-class="{active : views.TASK}">
 			<h2 ng-show="disable">Tasks Disabled</h2>
-			<div class="tasks" ng-hide="disable">
+			<div class="content-position" ng-hide="disable">
 				<span>{{app.remaining()}} {{'of' | translate}} {{app.todos.length}} {{'remaining' | translate}}</span>
 				[ <a href="" class="red" ng-click="app.clear()">{{'remove done items' | translate}}</a> ]
 
@@ -57,13 +61,15 @@
 			</div>
 		</div>
 
-		<div title="{{ 'LOCALE' | translate }}" class="tab-pane" ng-class="{active : views.LOCALE}"><!--  ng-show="views.LOCALE" -->
-			{{'chooseLanguage' | translate}}: 
-			<select ng-model="choice" 
-					ng-change="app.chooseLanguage(choice)" 
-					data-ng-options="choice for choice in languages">
-					<option value="" selected>Select Language</option>
-			</select>
+		<div title="{{ 'LOCALE' | translate }}" class="tab-pane" ng-class="{active : views.LOCALE}">
+			<div class="content-position">
+				{{'chooseLanguage' | translate}}: 
+				<select ng-model="choice" 
+						ng-change="app.chooseLanguage(choice)" 
+						data-ng-options="choice for choice in languages">
+						<option value="" selected>Select Language</option>
+				</select>
+			</div>
 		</div>
 
 	</div>
