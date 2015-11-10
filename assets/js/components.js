@@ -1,9 +1,9 @@
 // USE DIRECTIVES TO ATTACH SPECIFIC BEHAVIOR OR TRANSFORMATIONS TO DOM ELEMENTS
 // BUILT IN (HIDDEN) DIRECTIVES INCLUDE: ngModel, ngBind,& ngClass
 
-angular.module('Components', [])
+Component = angular.module('Components', []);
 
-.directive('drawer', function() {												// SLIDING SIDE MENU DIRECTIVES
+Component.directive('drawer', function() {												// SLIDING SIDE MENU DIRECTIVES
 	return {
 		template: "<div ng-class='{ show: visible }' ng-transclude></div>",
 		scope: {
@@ -12,9 +12,9 @@ angular.module('Components', [])
 		restrict: 'E',
 		transclude: true
 	};
-}) 
+});
 
-.directive('currentTime', function ($interval, dateFilter) {			// TIME & DATE DIRECTIVE
+Component.directive('currentTime', function ($interval, dateFilter) {			// TIME & DATE DIRECTIVE
 	return function (scope, element, attrs) {
 		var format,
 			tickTock;
@@ -36,16 +36,16 @@ angular.module('Components', [])
 			updateTimeAndFormat();
 		}, 1000);
 	}
-})
+});
 
-.directive('autoFocus', function ($timeout) {							// AUTOFOCUS INPUT FIELD ON PAGE LOAD
+Component.directive('autoFocus', function ($timeout) {							// AUTOFOCUS INPUT FIELD ON PAGE LOAD
     return function postLink(scope, element, attrs) {
         $timeout(function() {
 			element[0].focus();
 		});
     }
-})
-.directive('focusField', function ($timeout) { 							// INPUT FIELD FOCUS ON CLICK
+});
+Component.directive('focusField', function ($timeout) { 							// INPUT FIELD FOCUS ON CLICK
     return function (scope, element, attrs) {
         scope.$watch(attrs.focusField, function (value) {
             if (value) $timeout(function() {element[0].focus();} );
