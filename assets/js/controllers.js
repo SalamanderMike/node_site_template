@@ -17,6 +17,9 @@ Crtl.controller('AppController', ['$scope', '$rootScope', '$translate', function
 
 
 // TEST AREA (HARD HAT REQUIRED)
+// QR CODE GENERATOR
+
+
 // END OF TEST AREA
 
 

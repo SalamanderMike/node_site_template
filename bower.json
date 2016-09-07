@@ -17,12 +17,15 @@
     "tests"
   ],
   "dependencies": {
-    "angular": "~1.4.7",
-    "angular-route": "~1.4.7",
-    "angular-resource": "~1.4.7",
-    "angular-sanitize": "~1.4.7",
+    "angular": "~1.5.8",
+    "angular-route": "~1.5.8",
+    "angular-resource": "~1.5.8",
+    "angular-sanitize": "~1.5.8",
     "angular-translate": "~2.8.1",
     "angular-translate-loader-static-files": "~2.8.1",
     "font-awesome": "fontawesome#~4.4.0"
+  },
+  "resolutions": {
+    "angular": "~1.5.8"
   }
 }
