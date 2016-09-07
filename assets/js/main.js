@@ -1,6 +1,7 @@
 angular.module("myApp", [
 	"Router",
 	"Controllers",
-	"Components"
+	"Components",
+	"monospaced.qrcode"
 ])
 

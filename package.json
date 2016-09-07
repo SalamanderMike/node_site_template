@@ -1,25 +1,26 @@
 {
-    "name": "node_site_template",
-    "version": "1.0.0",
-    "description": "Template for basic node.js sites with angular.js",
-    "main": "server.js",
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/SalamanderMike/node_site_template.git"
-    },
-    "author": "Michael McClure",
-    "license": "MIT",
-    "bugs": {
-        "url": "https://github.com/SalamanderMike/node_site_template/issues"
-    },
-    "homepage": "https://github.com/SalamanderMike/node_site_template#readme",
-    "dependencies": {
-        "bower": "^1.7.9",
-        "body-parser": "^1.15.2",
-        "ejs": "^2.5.1",
-        "express": "^4.14.0"
-    }
+  "name": "node_site_template",
+  "version": "1.0.0",
+  "description": "Template for basic node.js sites with angular.js",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SalamanderMike/node_site_template.git"
+  },
+  "author": "Michael McClure",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/SalamanderMike/node_site_template/issues"
+  },
+  "homepage": "https://github.com/SalamanderMike/node_site_template#readme",
+  "dependencies": {
+    "angular-qrcode": "^6.2.1",
+    "body-parser": "^1.15.2",
+    "bower": "^1.7.9",
+    "ejs": "^2.5.1",
+    "express": "^4.14.0"
+  }
 }
