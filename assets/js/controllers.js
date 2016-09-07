@@ -8,12 +8,13 @@ Crtl.controller('AppController', ['$scope', '$rootScope', '$translate', function
 	$scope.disable = false;										// ENABLE FUNCTIONALITY
 	$scope.focusFocus = false;
 	$scope.views = {
-		BIND: true,
+		BIND: false,
 		FILTER: false,
 		UPDATE: false,
 		TASK: false,
-		LOCALE: false
-	}
+		LOCALE: false,
+		QRCODE: true
+	};
 
 
 // TEST AREA (HARD HAT REQUIRED)
@@ -36,7 +37,7 @@ Crtl.controller('AppController', ['$scope', '$rootScope', '$translate', function
 		});
 		$scope.views = views;
 		console.timeEnd("TAB-FUNCTION");						// PERFORMANCE TESTING
-	}
+	};
 
 
 	
@@ -93,7 +94,7 @@ Crtl.controller('AppController', ['$scope', '$rootScope', '$translate', function
 	app.showRight = function(e) {
 		$scope.rightVisible = true;
 		e.stopPropagation();
-	}
+	};
 
 	$rootScope.$on("documentClicked", _close);
 	$rootScope.$on("escapePressed", _close);
@@ -102,7 +103,7 @@ Crtl.controller('AppController', ['$scope', '$rootScope', '$translate', function
 		$scope.$apply(function() {
 			app.close(); 
 		});
-	}
+	};
 
 
 
@@ -117,7 +118,7 @@ Crtl.controller('AppController', ['$scope', '$rootScope', '$translate', function
 			$translate.use('zhCN');
 		} else if (lang === "English") {
 			$translate.use('enUS');
-		}
+		};
 		console.timeEnd("LOCALIZE-FUNCTION");						// PERFORMANCE TESTING
 	};
 }]);
