@@ -1,102 +1,60 @@
 <% include ./partials/header.ejs %>
-	
+<ul class="nav nav-tabs"><!-- USING BOOTSTRAP TAB STRUCTURE -->
+	<div ng-repeat="(key,val) in views track by $index" ng-class="{active:val}">
+		<a href="" ng-click="app.tabFunction(key)" ng-bind="key"></a>
+	</div> 
+</ul> 
 
-<!-- ANGULAR EXAMPLE: DIRECTIVE WIRING -->
-<!-- ANGULAR EXAMPLE: BIND -->
-<!-- ANGULAR EXAMPLE: FILTERS -->
-<!-- ANGULAR EXAMPLE: UPDATING WITH $interval and $watch -->
-<!-- ANGULAR EXAMPLE: TODO LIST -->
-
-
-
-<div> 																							<!-- TAB 部分-->
-	<ul class="nav nav-tabs" id="hide-tabs"> 													<!-- USING BOOTSTRAP TAB STRUCTURE -->
-	    <div ng-repeat="(key,val) in views track by $index" ng-class="{active:val}">			<!-- SELECTABLE TABS  ngClass HANDLES HOVER:FOCUS EFFECTS-->
-			<a href="" ng-click="app.tabFunction(key)" ng-bind="key | translate"></a>
-	    </div> 
-	</ul> 
-
-
-	<div class="tab-content">
-
-		<div title="{{ 'BIND' | translate }}" class="tab-pane" ng-class="{active : views.BIND}">
-			<input type="text" class="input-bg" ng-model="app.yourName" placeholder="{{ 'enterName' | translate }}" auto-focus>
-		</div>
-
-		<div title="{{ 'FILTER' | translate }}" class="tab-pane" ng-class="{active : views.FILTER}">
-			<div class="content-position">
-				2015-10-05 | fullDate<br>{{'isFilteredTo' | translate}}: {{ '2015-10-05' | date:'fullDate' }}<br>
-				123456 | currency<br>{{'isFilteredTo' | translate}}: {{ 123456 | currency }}<br>
-				<br>{{ page.title }}
-				98765.4321 | number<br>{{'isFilteredTo' | translate}}: {{ 98765.4321 | number }}<br>
-			</div>
-		</div>
-
-		<div title="{{ 'UPDATE' | translate }}" class="tab-pane" ng-class="{active : views.UPDATE}">
-			<div class="content-position">
-				{{'editDateFormat' | translate}}: <input ng-hide="disable" ng-model="format"><span ng-show="disable">Editing temporarily disabled</span> <br/>
-				{{'currentTimeIs' | translate}}:<br> <span current-time="format"></span>
-			</div>
-		</div>
-
-		<div title="{{ 'TASK' | translate }}" class="tab-pane" ng-class="{active : views.TASK}">
-			<h2 ng-show="disable">Tasks Disabled</h2>
-			<div class="content-position" ng-hide="disable">
-				<span>{{app.remaining()}} {{'of' | translate}} {{app.todos.length}} {{'remaining' | translate}}</span>
-				[ <a href="" class="red" ng-click="app.clear()">{{'remove done items' | translate}}</a> ]
-
-				<ul class="unstyled">
-					<div ng-repeat="todo in app.todos">
-						<label class="done-{{todo.done}}">
-							<input type="checkbox" ng-model="todo.done">
-							{{todo.text}}
-						</label>
-					</div>
-				</ul>
-
-				<form ng-submit="app.addTodo()">
-					<input type="text" class="input-bg" ng-model="app.todoText" size="30" placeholder="{{'addNewTaskHere' | translate}}" focus-field="focusFocus">
-					<input type="submit" value="{{'ADDTASK' | translate}}" ng-click="focusFocus=true">
-				</form>
-			</div>
-		</div>
-
-		<div title="{{ 'LOCALE' | translate }}" class="tab-pane" ng-class="{active : views.LOCALE}">
-			<div class="content-position">
-				{{'chooseLanguage' | translate}}: 
-				<select ng-model="choice" 
-						ng-change="app.chooseLanguage(choice)" 
-						data-ng-options="choice for choice in languages">
-						<option value="" selected>Select Language</option>
-				</select>
-			</div>
-		</div>
-
-
-		<div title="{{ 'QRCODE' | translate }}" class="tab-pane" ng-class="{active : views.QRCODE}">
-			<div class="content-position">
-				{{'qr' | translate}}: 
+<div class="tab-content">
+	<div title="HOME" class="tab-pane" ng-class="{active : views.HOME}">
 
 
 
 
-			</div>
-		</div>
 
 
 	</div>
 
+	<div title="FILTER" class="tab-pane" ng-class="{active : views.FILTER}">
+		<div class="content-position">
+			2015-10-05 | fullDate<br>is filtered to: {{ '2015-10-05' | date:'fullDate' }}<br>
+			123456 | currency<br>is filtered to: {{ 123456 | currency }}<br>
+			<br>{{ page.title }}
+			98765.4321 | number<br>is filtered to: {{ 98765.4321 | number }}<br>
+		</div>
+	</div>
+
+	<div title="UPDATE" class="tab-pane" ng-class="{active : views.UPDATE}">
+		<div class="content-position">
+			Edit Date Format: <input ng-model="format"> <br/>
+			Current time is:<br> <span current-time="format"></span>
+		</div>
+	</div>
+
+	<div title="TASK" class="tab-pane" ng-class="{active : views.TASK}">
+		<div class="content-position">
+			<span>{{app.remaining()}} of {{app.todos.length}} remaining</span>
+			[ <a href="" class="red" ng-click="app.clear()">Remove done items</a> ]
+
+			<ul class="unstyled">
+				<div ng-repeat="todo in app.todos">
+					<label class="done-{{todo.done}}">
+						<input type="checkbox" ng-model="todo.done">
+						{{todo.text}}
+					</label>
+				</div>
+			</ul>
+
+			<form ng-submit="app.addTodo()">
+				<input type="text" class="input-bg" ng-model="app.todoText" size="30" placeholder="Add task here" focus-field="focusFocus">
+				<button type="submit">Add Task</button>
+			</form>
+		</div>
+	</div>
+
+	<div title="API" class="tab-pane" ng-class="{active : views.API}">
+		<div class="map-wrapper"><div id="map"></div></div>
+	</div>
 </div>
-
-
-<!-- EVENTUAL INCLUSION OF OAUTH -->
-<!-- <button ng-click="clickConnect('Imgur')" class="btn">Imjur</button>
-<div ng-show="me">
-    <p>Successfully connected with {{provider}}</p>
-    <p>Hello {{me.name}}</p>
-</div> -->
-
-
-
 
 <% include ./partials/footer.ejs %>

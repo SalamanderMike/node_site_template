@@ -1,6 +1,3 @@
-// USE DIRECTIVES TO ATTACH SPECIFIC BEHAVIOR OR TRANSFORMATIONS TO DOM ELEMENTS
-// BUILT IN (HIDDEN) DIRECTIVES INCLUDE: ngModel, ngBind,& ngClass
-
 Component = angular.module('Components', []);
 
 Component.directive('drawer', function() {												// SLIDING SIDE MENU DIRECTIVES

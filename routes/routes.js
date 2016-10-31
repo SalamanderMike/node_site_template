@@ -1,13 +1,7 @@
 module.exports = function (app) {
-
-	app.get('/test', function (req,res) {		// ALLOWS ANGULAR ROUTER TO USE /test AS AN ADDRESS
+	app.get('*', function (req,res) {
 		res.render('site');
 	});
-
-	app.get('*', function (req,res) {			// CAPTURES ALL ADDRESSES AND RENDERS THEM AS site.ejs
-		res.render('site');
-	});
-
 }
 
 

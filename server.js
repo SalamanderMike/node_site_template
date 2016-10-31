@@ -1,11 +1,12 @@
-var config = 
-	// require('./assets/resources/config.js').env,											// DISABLED FOR PRODUCTION
-	express = require('express'),
+var express 	= require('express'),
 	bodyParser  = require('body-parser'),
-	path = require('path'),
-	OAuth = require('oauth'),
-	app = express();
+	path 		= require('path'),
+	app 		= express();
 
+
+// DISABLED FOR PRODUCTION
+var Config 	= require('./assets/js/config.js');
+var conf 	= new Config();
 
 
 // Middleware
@@ -22,7 +23,15 @@ app.use(express.static(__dirname + '/assets'));
 app.set("view engine", "ejs");
 
 
-
+// APIs
+var env = process.env.API_KEY || 'develop';
+app.get('/config', function(req,res) {
+	if (env !== 'develop') {
+		res.send(env);
+	} else {
+		res.send(conf.API);
+	};
+});
 
 
 // ROUTES

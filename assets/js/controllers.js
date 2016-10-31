@@ -1,32 +1,66 @@
 Crtl = angular.module('Controllers', []);
 
-Crtl.controller('AppController', ['$scope', '$rootScope', '$translate', function ($scope, $rootScope, $translate) {
+Crtl.controller('AppController', ['$scope', '$rootScope', '$http', function($scope, $rootScope, $http) {
 // SCOPE VARIABLES
 	var app = this;
 	$scope.format = 'M/d/yyyy h:mm:ss a';						// DATE AND TIME FORMAT
-	$scope.languages = ['中国（简体)','English'];
-	$scope.disable = false;										// ENABLE FUNCTIONALITY
 	$scope.focusFocus = false;
 	$scope.views = {
-		BIND: false,
+		HOME: 	true,
 		FILTER: false,
 		UPDATE: false,
-		TASK: false,
-		LOCALE: false,
-		QRCODE: true
+		TASK: 	false,
+		API: 	false
 	};
 
 
 // TEST AREA (HARD HAT REQUIRED)
-// QR CODE GENERATOR
+
+
+
+
+
+
+
 
 
 // END OF TEST AREA
 
 
+
+
+// SECTION: TODO
+	app.todos = [
+		{text:'Item #1', done:true},
+		{text:'Item #2', done:false}
+	];
+
+	app.addTodo = function() {
+		app.todos.push({text:app.todoText, done:false});
+		app.todoText = '';
+		$scope.focusFocus = false;
+	};
+
+	app.remaining = function() {
+		var count = 0;
+		angular.forEach(app.todos, function(todo) {
+			count += todo.done ? 0 : 1;
+		});
+		return count;
+	};
+
+	app.clear = function() {
+		var allTodos = app.todos;
+		app.todos = [];
+		angular.forEach(allTodos, function(todo) {
+			if (!todo.done) app.todos.push(todo);
+		});
+	};
+
 // SECTION: NAV-TABS
 	app.tabFunction = function(tab) {
-		console.time("TAB-FUNCTION");							// PERFORMANCE TESTING
+		// PERFORMANCE TESTING
+		// console.time("TAB-FUNCTION");							
 		views = $scope.views;
 		angular.forEach(Object.keys(views), function (page) {
 			if (tab != page) {
@@ -36,46 +70,7 @@ Crtl.controller('AppController', ['$scope', '$rootScope', '$translate', function
 			};
 		});
 		$scope.views = views;
-		console.timeEnd("TAB-FUNCTION");						// PERFORMANCE TESTING
 	};
-
-
-	
-
-
-// SECTION: TODO
-	app.todos = [												// Array of items for our Todo List
-		{text:'Item #1', done:true},
-		{text:'Item #2', done:false}
-	];
-
-	app.addTodo = function() {									// Function to add to our list
-		app.todos.push({text:app.todoText, done:false});
-		app.todoText = '';
-		$scope.focusFocus = false;
-	};
-
-	app.remaining = function() {								// Function to find number of unchecked items
-		var count = 0;
-		angular.forEach(app.todos, function(todo) {
-			count += todo.done ? 0 : 1;
-		});
-		return count;
-	};
-
-	app.clear = function() {									// Function to remove done items
-		var allTodos = app.todos;
-		app.todos = [];
-		angular.forEach(allTodos, function(todo) {
-			if (!todo.done) app.todos.push(todo);
-		});
-	};
-
-
-
-
-
-
 
 // SLIDING SIDE MENU
 	$scope.leftVisible = false;
@@ -104,27 +99,4 @@ Crtl.controller('AppController', ['$scope', '$rootScope', '$translate', function
 			app.close(); 
 		});
 	};
-
-
-
-
-
-
-
-// SECTION: TRANSLATION
-	app.chooseLanguage = function (lang) {
-		console.time("LOCALIZE-FUNCTION");							// PERFORMANCE TESTING
-		if (lang === "中国（简体)") {
-			$translate.use('zhCN');
-		} else if (lang === "English") {
-			$translate.use('enUS');
-		};
-		console.timeEnd("LOCALIZE-FUNCTION");						// PERFORMANCE TESTING
-	};
-}]);
-
-Crtl.controller('DateCtrl', ['$scope', '$rootScope', function ($scope, $rootScope) {
-	$scope.disable = true;											// DISABLE TODO AND DATE EDIT FUNCTIONALITY
-	$scope.format = 'M/d/yyyy h:mm:ss a';							// DATE AND TIME FORMAT
-	$scope.languages = ['中国（简体)','English'];
 }]);

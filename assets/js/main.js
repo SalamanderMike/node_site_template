@@ -2,6 +2,7 @@ angular.module("myApp", [
 	"Router",
 	"Controllers",
 	"Components",
-	"monospaced.qrcode"
+	"ngAnimate",
+	"ui.bootstrap"
 ])
 
